@@ -1,10 +1,5 @@
-import React from 'react';
-
-interface ButtonProps {
-    label: string;
-}
-declare const Button: ({ label }: ButtonProps) => React.JSX.Element;
-
+import React from "react";
+import "./style.css";
 interface ChatWidgetIOProps {
     apiKey: string;
     chatbotName?: string;
@@ -15,5 +10,4 @@ interface ChatWidgetIOProps {
     chatIcon?: any;
 }
 declare const ChatBotWidget: ({ apiKey, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, }: ChatWidgetIOProps) => React.JSX.Element;
-
-export { Button, ChatBotWidget };
+export default ChatBotWidget;
