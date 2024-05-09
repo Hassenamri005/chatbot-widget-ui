@@ -2,6 +2,14 @@
 
 ![Chatbot Demo](./chatbot.png)
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/decaporg/decap-cms/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/lauf)](https://www.npmjs.com/package/chatbot-widget-ui) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/decaporg/decap-cms/blob/main/CONTRIBUTING.md)
+
+<div style="text-align: center;">
+
+[chatbot-widget-ui](https://www.npmjs.com/package/chatbot-widget-ui)
+
+</div>
+
 **my-chatbot-widget** is a React.js Chatbot Widget UI library developed using TypeScript, offering extensive customization options.
 
 - **Authors**: [Hassen Amri](https://www.linkedin.com/in/hassenamri005/), [Raed Lazreg](https://www.linkedin.com/in/raid-lazreg-61378127a/), [Taha Berguiga](https://www.linkedin.com/in/taha-berguiga/)
