@@ -8,6 +8,8 @@ interface ChatWidgetIOProps {
     primaryColor?: string;
     inputMsgPlaceholder?: string;
     chatIcon?: any;
+    conversation?: any;
+    handleNewMessage?: any;
 }
-declare const ChatBotWidget: ({ apiKey, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, }: ChatWidgetIOProps) => React.JSX.Element;
+declare const ChatBotWidget: ({ apiKey, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, conversation, handleNewMessage, }: ChatWidgetIOProps) => React.JSX.Element;
 export default ChatBotWidget;

@@ -9,6 +9,8 @@ interface ChatWidgetIOProps {
   primaryColor?: string;
   inputMsgPlaceholder?: string;
   chatIcon?: any;
+  conversation?: any;
+  handleNewMessage?: any;
 }
 
 const ChatBotWidget = ({
@@ -19,6 +21,8 @@ const ChatBotWidget = ({
   primaryColor = "#eb4034",
   inputMsgPlaceholder = "Send a Message",
   chatIcon = ChatIcon(),
+  conversation,
+  handleNewMessage,
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<any>("");
   const [messages, setMessages] = useState<any>([]);
@@ -39,6 +43,10 @@ const ChatBotWidget = ({
       </li>
     );
     setMessages((prevMessages: any) => [...prevMessages, outgoingChat]);
+    handleNewMessage((prevMessages: any) => [
+      ...prevMessages,
+      { type: "user", text: trimmedMessage },
+    ]);
 
     try {
       setTyping(true);
@@ -74,6 +82,10 @@ const ChatBotWidget = ({
         </li>
       );
       setMessages((prevMessages: any) => [...prevMessages, incomingChat]);
+      handleNewMessage((prevMessages: any) => [
+        ...prevMessages,
+        { type: "bot", text: botResponse },
+      ]);
     } catch (error) {
       // Display error message if API request fails
       const errorChat = (
