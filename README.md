@@ -2,7 +2,7 @@
 
 ![Chatbot Demo](./chatbot.png)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]() [![npm version](https://img.shields.io/badge/npm-v1.0.5-green)](https://www.npmjs.com/package/chatbot-widget-ui) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]() [![npm version](https://img.shields.io/badge/npm-v10.9.0-green)](https://www.npmjs.com/package/chatbot-widget-ui) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 **Authors**: [Hassen Amri](https://www.linkedin.com/in/hassenamri005/), [Raed Lazreg](https://www.linkedin.com/in/raid-lazreg-61378127a/), [Taha Berguiga](https://www.linkedin.com/in/taha-berguiga/)
 
@@ -12,14 +12,14 @@
 **Package Github Repository Link:**
 [chatbot-widget-ui](https://github.com/Hassenamri005/chatbot-widget-ui)
 
-**chatbot-widget-ui** is a library for creating React.js chatbot widget UI, built using TypeScript. It provides comprehensive customization features that leverage OpenAI API completions.
+**chatbot-widget-ui** is a library for creating a `React.js` chatbot widget UI, built with `TypeScript`. It offers extensive customization features for building interactive chatbot experiences and **`supports` integration with any LLM API to generate dynamic responses**.
 
 **Features**:
 
-- Implemented using React.js and TypeScript for robustness and type safety.
+- Implemented using `React.js` and `TypeScript` for robustness and type safety.
 - Provides a customizable user interface for integrating chatbot functionality into web applications.
 - Offers various configuration options to tailor the chatbot widget's appearance and behavior.
-- Utilizes **OpenAI API** for powerful natural language processing capabilities.
+- **`Supports` integration with any `LLM API` for generating dynamic responses.**
 
 ## Usage
 
@@ -41,13 +41,14 @@ import { ChatBotWidget } from "chatbot-widget-ui";
 
 ```javascript
 <ChatBotWidget
-  apiKey="YOUR_OPENAI_API_KEY_HERE"
-  chatIcon={<div>O</div>}
+  callApi={customApiCall}
+  primaryColor="#3498db"
+  inputMsgPlaceholder="Type your message..."
   chatbotName="Customer Support"
   isTypingMessage="Typing..."
   IncommingErrMsg="Oops! Something went wrong. Try again."
-  primaryColor="#eb4034"
-  inputMsgPlaceholder="Send a Message"
+  handleNewMessage={setMessages}
+  chatIcon={<div>O</div>}
 />
 ```
 
@@ -62,18 +63,29 @@ const App = () => {
   // Example: [{'type': 'user', 'text': 'hello'}, {'type': 'bot', 'text': 'Hello, how can i assist you today!'}, ...]
   const [messages, setMessages] = useState<string[]>([]);
 
+  const customApiCall = async (message: string): Promise<string> => {
+    const response = await fetch("https://example.com/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userMessage: message }),
+    });
+    const data = await response.json();
+    return data.content;
+  };
+
   return (
     <div>
       <ChatBotWidget
-        apiKey="YOUR_OPENAI_API_KEY_HERE"
-        chatIcon={<div>O</div>}
+        callApi={customApiCall}
+        primaryColor="#3498db"
+        inputMsgPlaceholder="Type your message..."
         chatbotName="Customer Support"
         isTypingMessage="Typing..."
-        IncommingErrMsg="Oops! Something went wrong !"
-        primaryColor="#eb4034"
-        inputMsgPlaceholder="Send a Message"
-        conversation={messages}
+        IncommingErrMsg="Oops! Something went wrong. Try again."
         handleNewMessage={setMessages}
+        chatIcon={<div>O</div>}
       />
     </div>
   );
@@ -86,12 +98,11 @@ export default App;
 
 | Prop Name             | Type       | Default Value                                     | Description                                                                         |
 | --------------------- | ---------- | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `apiKey`              | string     |                                                   | The API key required for the **OpenAI API** integration.                            |
+| `callApi`             | function   | N/A                                               | Sends an API request to retrieve text completion.                                   |
 | `chatbotName`         | string     | `"Chatbot"`                                       | The name/title of the chatbot displayed in the header.                              |
 | `isTypingMessage`     | string     | `"Typing..."`                                     | The message displayed when the chatbot is typing a response.                        |
 | `IncommingErrMsg`     | string     | `"Oops! Something went wrong. Please try again."` | The error message displayed when an API request fails.                              |
 | `primaryColor`        | string     | `"#eb4034"`                                       | The primary color used for styling elements like headers, buttons, and backgrounds. |
 | `inputMsgPlaceholder` | string     | `"Send a Message"`                                | The placeholder text shown in the chat input textarea.                              |
 | `chatIcon`            | any        | `ChatIcon()` (ReactElement)                       | The icon displayed in the chatbot toggler button.                                   |
-| `conversation`        | `array`    | [ ]                                               | Empty array to store all conversation messages.                                     |
-| `handleNewMessage`    | `function` |                                                   | Placeholder for a function to process new messages.                                 |
+| `handleNewMessage`    | `function` | N/A                                               | Placeholder for a function to process new messages.                                 |

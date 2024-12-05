@@ -1,32 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./style.css"; // Import your stylesheet
+import "./style.css";
 
 interface ChatWidgetIOProps {
-  apiKey: string;
+  callApi: (message: string) => Promise<string>;
   chatbotName?: string;
   isTypingMessage?: string;
   IncommingErrMsg?: string;
   primaryColor?: string;
   inputMsgPlaceholder?: string;
   chatIcon?: any;
-  conversation?: any;
-  handleNewMessage?: any;
+  handleNewMessage?: (messages: any) => void;
 }
 
 const ChatBotWidget = ({
-  apiKey,
+  callApi,
   chatbotName = "Chatbot",
   isTypingMessage = "Typing...",
   IncommingErrMsg = "Oops! Something went wrong. Please try again.",
   primaryColor = "#eb4034",
   inputMsgPlaceholder = "Send a Message",
   chatIcon = ChatIcon(),
-  conversation,
   handleNewMessage,
 }: ChatWidgetIOProps) => {
-  const [userMessage, setUserMessage] = useState<any>("");
-  const [messages, setMessages] = useState<any>([]);
-  const [typing, setTyping] = useState<any>(false);
+  const [userMessage, setUserMessage] = useState<string>("");
+  const [messages, setMessages] = useState<any[]>([]);
+  const [typing, setTyping] = useState<boolean>(false);
   const chatInputRef = useRef<any>(null);
   const chatboxRef = useRef<any>(null);
 
@@ -42,8 +40,8 @@ const ChatBotWidget = ({
         <p style={{ background: primaryColor }}>{trimmedMessage}</p>
       </li>
     );
-    setMessages((prevMessages: any) => [...prevMessages, outgoingChat]);
-    handleNewMessage((prevMessages: any) => [
+    setMessages((prevMessages) => [...prevMessages, outgoingChat]);
+    handleNewMessage?.((prevMessages: any) => [
       ...prevMessages,
       { type: "user", text: trimmedMessage },
     ]);
@@ -51,28 +49,8 @@ const ChatBotWidget = ({
     try {
       setTyping(true);
 
-      // Request to API for bot response
-      const API_URL = "https://api.openai.com/v1/chat/completions";
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [
-            {
-              role: "user",
-              content: trimmedMessage,
-            },
-          ],
-        }),
-      };
-
-      const response = await fetch(API_URL, requestOptions);
-      const data = await response.json();
-      const botResponse = data.choices[0].message.content.trim();
+      // Use the custom API call function
+      const botResponse = await callApi(trimmedMessage);
 
       // Display incoming bot message
       const incomingChat = (
@@ -81,30 +59,30 @@ const ChatBotWidget = ({
           <p>{botResponse}</p>
         </li>
       );
-      setMessages((prevMessages: any) => [...prevMessages, incomingChat]);
-      handleNewMessage((prevMessages: any) => [
+      setMessages((prevMessages) => [...prevMessages, incomingChat]);
+      handleNewMessage?.((prevMessages: any) => [
         ...prevMessages,
         { type: "bot", text: botResponse },
       ]);
     } catch (error) {
-      // Display error message if API request fails
+      // Display error message if API call fails
       const errorChat = (
         <li key={Date.now()} className="chat incoming error">
           <p>{IncommingErrMsg}</p>
         </li>
       );
-      setMessages((prevMessages: any) => [...prevMessages, errorChat]);
+      setMessages((prevMessages) => [...prevMessages, errorChat]);
     } finally {
       setTyping(false);
     }
   };
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserMessage(event.target.value);
     chatInputRef.current.style.height = `${chatInputRef.current.scrollHeight}px`;
   };
 
-  const handleKeyPress = (event: any) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey && window.innerWidth > 800) {
       event.preventDefault();
       handleChat();
