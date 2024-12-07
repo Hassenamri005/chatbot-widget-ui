@@ -1,6 +1,6 @@
 {
   "name": "chatbot-widget-ui",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React js Chatbot Widget UI library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
