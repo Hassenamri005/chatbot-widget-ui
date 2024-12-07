@@ -152,7 +152,7 @@ const ChatBotWidget = ({ callApi, chatbotName = "Chatbot", isTypingMessage = "Ty
 };
 const ChatIcon = () => {
     return (React.createElement(React.Fragment, null,
-        React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", xmlSpace: "preserve", width: 18, height: 18, fill: "#fff", stroke: "#fff", viewBox: "0 0 58 58" },
+        React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", xmlSpace: "preserve", width: 18, height: 18, fill: "#fff", viewBox: "0 0 58 58", stroke: "#fff" },
             React.createElement("path", { d: "M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z", style: {
                     fill: "#fff",
                 } }),
