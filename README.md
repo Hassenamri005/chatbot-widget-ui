@@ -106,3 +106,17 @@ export default App;
 | `inputMsgPlaceholder` | string     | `"Send a Message"`                                | The placeholder text shown in the chat input textarea.                              |
 | `chatIcon`            | any        | `ChatIcon()` (ReactElement)                       | The icon displayed in the chatbot toggler button.                                   |
 | `handleNewMessage`    | `function` | N/A                                               | Placeholder for a function to process new messages.                                 |
+
+# Deployment
+
+```bash
+nvm install 16
+
+nvm use 16
+
+npm run rollup-build-lib
+
+npm login
+
+npm publish --access public
+```
