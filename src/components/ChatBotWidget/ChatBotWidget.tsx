@@ -79,7 +79,15 @@ const ChatBotWidget = ({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserMessage(event.target.value);
-    chatInputRef.current.style.height = `${chatInputRef.current.scrollHeight}px`;
+
+    // Reset height to auto before calculating new height
+    chatInputRef.current.style.height = "auto";
+
+    // Adjust the height dynamically based on content
+    chatInputRef.current.style.height = `${Math.min(
+      chatInputRef.current.scrollHeight,
+      80
+    )}px`;
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
