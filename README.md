@@ -12,14 +12,16 @@
 **Package Github Repository Link:**
 [chatbot-widget-ui](https://github.com/Hassenamri005/chatbot-widget-ui)
 
-**chatbot-widget-ui** is a library for creating a `React.js` chatbot widget UI, built with `TypeScript`. It offers extensive customization features for building interactive chatbot experiences and **`supports` integration with any LLM API to generate dynamic responses**.
+**chatbot-widget-ui** is a library for creating a `React.js` chatbot widget UI, built with `TypeScript`. It offers extensive customization features for building interactive chatbot experiences and **supports integration with any LLM API to generate dynamic responses**.
 
 **Features**:
 
 - Implemented using `React.js` and `TypeScript` for robustness and type safety.
 - Provides a customizable user interface for integrating chatbot functionality into web applications.
 - Offers various configuration options to tailor the chatbot widget's appearance and behavior.
-- **`Supports` integration with any `LLM API` for generating dynamic responses.**
+- **Supports integration with any LLM API for generating dynamic responses.**
+- Displays a bot icon with error messages.
+- Allows customization of the "is typing" message font style.
 
 ## Usage
 
@@ -42,26 +44,53 @@ import { ChatBotWidget } from "chatbot-widget-ui";
 ```javascript
 <ChatBotWidget
   callApi={customApiCall}
+  onBotResponse={handleBotResponse}
+  handleNewMessage={handleNewMessage}
+  messages={messages}
   primaryColor="#3498db"
   inputMsgPlaceholder="Type your message..."
   chatbotName="Customer Support"
   isTypingMessage="Typing..."
   IncommingErrMsg="Oops! Something went wrong. Try again."
-  handleNewMessage={setMessages}
   chatIcon={<div>O</div>}
+  botIcon={<div>B</div>}
+  botFontStyle={{
+    fontFamily: "Arial",
+    fontSize: "14px",
+    color: "red",
+  }}
+  typingFontStyle={{
+    fontFamily: "Arial",
+    fontSize: "12px",
+    color: "#888",
+    fontStyle: "italic",
+  }}
 />
 ```
 
 ### Usage Example
 
 ```javascript
-import React from "react";
+import React, { useState } from "react";
 import { ChatBotWidget } from "chatbot-widget-ui";
 
 const App = () => {
-  // save all messages conversation
-  // Example: [{'type': 'user', 'text': 'hello'}, {'type': 'bot', 'text': 'Hello, how can i assist you today!'}, ...]
-  const [messages, setMessages] = useState<string[]>([]);
+  // Save all messages conversation
+  // Example: [{'role': 'user', 'content': 'hello'}, {'role': 'assistant', 'content': 'Hello, how can I assist you today!'}, ...]
+    const [messages, setMessages] = useState<any[]>([
+    {
+      role: "user",
+      content: "hello",
+    },
+    {
+      role: "assistant",
+      content: "hi!",
+    },
+    {
+      role: "user",
+      content: "who are you",
+    },
+  ]);
 
   const customApiCall = async (message: string): Promise<string> => {
     const response = await fetch("https://example.com/api", {
@@ -75,18 +104,45 @@ const App = () => {
     return data.content;
   };
 
+  const handleBotResponse = (response: string) => {
+    // Handle the bot's response here
+    console.log("Bot Response:", response);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "assistant", content: response },
+    ]);
+  };
+
+  const handleNewMessage = (message: any) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  };
+
   return (
     <div>
       <ChatBotWidget
-        callApi={customApiCall}
-        primaryColor="#3498db"
-        inputMsgPlaceholder="Type your message..."
-        chatbotName="Customer Support"
-        isTypingMessage="Typing..."
-        IncommingErrMsg="Oops! Something went wrong. Try again."
-        handleNewMessage={setMessages}
-        chatIcon={<div>O</div>}
-      />
+          callApi={customApiCall}
+          onBotResponse={handleBotResponse}
+          handleNewMessage={handleNewMessage}
+          messages={messages}
+          primaryColor="#3498db"
+          inputMsgPlaceholder="Type your message..."
+          chatbotName="Customer Support"
+          isTypingMessage="Typing..."
+          IncommingErrMsg="Oops! Something went wrong. Try again."
+          chatIcon={<div>O</div>}
+          botIcon={<div>B</div>}
+          botFontStyle={{
+            fontFamily: "Arial",
+            fontSize: "14px",
+            color: "red",
+          }}
+          typingFontStyle={{
+            fontFamily: "Arial",
+            fontSize: "12px",
+            color: "#888",
+            fontStyle: "italic",
+          }}
+        />
     </div>
   );
 };
@@ -96,18 +152,23 @@ export default App;
 
 ## Chatbot Component Props
 
-| Prop Name             | Type       | Default Value                                     | Description                                                                         |
-| --------------------- | ---------- | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `callApi`             | function   | N/A                                               | Sends an API request to retrieve text completion.                                   |
-| `chatbotName`         | string     | `"Chatbot"`                                       | The name/title of the chatbot displayed in the header.                              |
-| `isTypingMessage`     | string     | `"Typing..."`                                     | The message displayed when the chatbot is typing a response.                        |
-| `IncommingErrMsg`     | string     | `"Oops! Something went wrong. Please try again."` | The error message displayed when an API request fails.                              |
-| `primaryColor`        | string     | `"#eb4034"`                                       | The primary color used for styling elements like headers, buttons, and backgrounds. |
-| `inputMsgPlaceholder` | string     | `"Send a Message"`                                | The placeholder text shown in the chat input textarea.                              |
-| `chatIcon`            | any        | `ChatIcon()` (ReactElement)                       | The icon displayed in the chatbot toggler button.                                   |
-| `handleNewMessage`    | `function` | N/A                                               | Placeholder for a function to process new messages.                                 |
+| Prop Name             | Type     | Default Value                                     | Description                                                                         |
+| --------------------- | -------- | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `callApi`             | function | N/A                                               | Sends an API request to retrieve text completion.                                   |
+| `chatbotName`         | string   | `"Chatbot"`                                       | The name/title of the chatbot displayed in the header.                              |
+| `isTypingMessage`     | string   | `"Typing..."`                                     | The message displayed when the chatbot is typing a response.                        |
+| `IncommingErrMsg`     | string   | `"Oops! Something went wrong. Please try again."` | The error message displayed when an API request fails.                              |
+| `primaryColor`        | string   | `"#eb4034"`                                       | The primary color used for styling elements like headers, buttons, and backgrounds. |
+| `inputMsgPlaceholder` | string   | `"Send a Message"`                                | The placeholder text shown in the chat input textarea.                              |
+| `chatIcon`            | any      | `ChatIcon()` (ReactElement)                       | The icon displayed in the chatbot toggler button.                                   |
+| `botIcon`             | any      | `BotIcon()` (ReactElement)                        | The icon displayed with bot messages and error messages.                            |
+| `botFontStyle`        | object   | `{}`                                              | The font style for bot messages.                                                    |
+| `typingFontStyle`     | object   | `{}`                                              | The font style for the "is typing" message.                                         |
+| `handleNewMessage`    | function | N/A                                               | Processes new messages and updates the conversation state.                          |
+| `onBotResponse`       | function | N/A                                               | Processes new messages and updates the conversation state.                          |
+| `messages`            | array    | `[]`                                              | The array of messages to display in the chat.                                       |
 
-# Deployment
+## Deployment
 
 ```bash
 nvm install 16
