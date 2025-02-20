@@ -9,7 +9,12 @@ interface ChatWidgetIOProps {
   primaryColor?: string;
   inputMsgPlaceholder?: string;
   chatIcon?: any;
-  handleNewMessage?: (messages: any) => void;
+  botIcon?: any;
+  botFontStyle?: React.CSSProperties;
+  typingFontStyle?: React.CSSProperties;
+  handleNewMessage?: (message: any) => void;
+  onBotResponse?: (response: string) => void;
+  messages?: any[];
 }
 
 const ChatBotWidget = ({
@@ -19,11 +24,15 @@ const ChatBotWidget = ({
   IncommingErrMsg = "Oops! Something went wrong. Please try again.",
   primaryColor = "#eb4034",
   inputMsgPlaceholder = "Send a Message",
-  chatIcon = ChatIcon(),
+  chatIcon = <ChatIcon />,
+  botIcon = <BotIcon />,
+  botFontStyle = {},
+  typingFontStyle = {},
   handleNewMessage,
+  onBotResponse,
+  messages = [],
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<string>("");
-  const [messages, setMessages] = useState<any[]>([]);
   const [typing, setTyping] = useState<boolean>(false);
   const chatInputRef = useRef<any>(null);
   const chatboxRef = useRef<any>(null);
@@ -35,16 +44,8 @@ const ChatBotWidget = ({
     setUserMessage("");
 
     // Display outgoing message
-    const outgoingChat = (
-      <li key={Date.now()} className="chat outgoing">
-        <p style={{ background: primaryColor }}>{trimmedMessage}</p>
-      </li>
-    );
-    setMessages((prevMessages) => [...prevMessages, outgoingChat]);
-    handleNewMessage?.((prevMessages: any) => [
-      ...prevMessages,
-      { type: "user", text: trimmedMessage },
-    ]);
+    const outgoingMessage = { role: "user", content: trimmedMessage };
+    handleNewMessage?.(outgoingMessage);
 
     try {
       setTyping(true);
@@ -52,26 +53,12 @@ const ChatBotWidget = ({
       // Use the custom API call function
       const botResponse = await callApi(trimmedMessage);
 
-      // Display incoming bot message
-      const incomingChat = (
-        <li key={Date.now()} className="chat incoming">
-          <span className="material-symbols-outlined">smart_toy</span>
-          <p>{botResponse}</p>
-        </li>
-      );
-      setMessages((prevMessages) => [...prevMessages, incomingChat]);
-      handleNewMessage?.((prevMessages: any) => [
-        ...prevMessages,
-        { type: "bot", text: botResponse },
-      ]);
+      // Call the callback function with the bot's response
+      onBotResponse?.(botResponse);
     } catch (error) {
       // Display error message if API call fails
-      const errorChat = (
-        <li key={Date.now()} className="chat incoming error">
-          <p>{IncommingErrMsg}</p>
-        </li>
-      );
-      setMessages((prevMessages) => [...prevMessages, errorChat]);
+      const errorMessage = { role: "error", content: IncommingErrMsg };
+      handleNewMessage?.(errorMessage);
     } finally {
       setTyping(false);
     }
@@ -142,10 +129,33 @@ const ChatBotWidget = ({
           </span>
         </header>
         <ul className="chatbox" ref={chatboxRef}>
-          {messages}
+          {messages.map((msg, index) => (
+            <li
+              key={index}
+              className={`chat ${
+                msg.role === "user" ? "outgoing" : "incoming"
+              }`}
+            >
+              {msg.role !== "user" && (
+                <span className="material-symbols-outlined">{botIcon}</span>
+              )}
+              <p
+                style={
+                  msg.role === "assistant"
+                    ? botFontStyle
+                    : msg.role === "error"
+                    ? botFontStyle
+                    : { background: primaryColor }
+                }
+              >
+                {msg.content}
+              </p>
+            </li>
+          ))}
           {typing && (
             <li key={Date.now()} className="chat incoming">
-              <p>{isTypingMessage}</p>
+              <span className="material-symbols-outlined">{botIcon}</span>
+              <p style={typingFontStyle}>{isTypingMessage}</p>
             </li>
           )}
         </ul>
@@ -177,6 +187,53 @@ const ChatBotWidget = ({
 };
 
 const ChatIcon = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlSpace="preserve"
+        width={18}
+        height={18}
+        fill="#fff"
+        stroke="#fff"
+        viewBox="0 0 58 58"
+      >
+        <path
+          d="M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z"
+          style={{
+            fill: "#fff",
+          }}
+        />
+        <circle
+          cx={15}
+          cy={24.799}
+          r={3}
+          style={{
+            fill: "#fff",
+          }}
+        />
+        <circle
+          cx={29}
+          cy={24.799}
+          r={3}
+          style={{
+            fill: "#fff",
+          }}
+        />
+        <circle
+          cx={43}
+          cy={24.799}
+          r={3}
+          style={{
+            fill: "#fff",
+          }}
+        />
+      </svg>
+    </>
+  );
+};
+
+const BotIcon = () => {
   return (
     <>
       <svg
