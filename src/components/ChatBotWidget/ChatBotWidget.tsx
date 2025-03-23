@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
 
+interface Message {
+  role: string;
+  content: string;
+}
+
 interface ChatWidgetIOProps {
   callApi: (message: string) => Promise<string>;
   chatbotName?: string;
@@ -8,13 +13,14 @@ interface ChatWidgetIOProps {
   IncommingErrMsg?: string;
   primaryColor?: string;
   inputMsgPlaceholder?: string;
-  chatIcon?: any;
-  botIcon?: any;
+  chatIcon?: React.ReactNode;
+  botIcon?: React.ReactNode;
   botFontStyle?: React.CSSProperties;
   typingFontStyle?: React.CSSProperties;
-  handleNewMessage?: (message: any) => void;
+  handleNewMessage?: (message: Message) => void;
   onBotResponse?: (response: string) => void;
-  messages?: any[];
+  messages?: Message[];
+  useInnerHTML?: boolean;
 }
 
 const ChatBotWidget = ({
@@ -31,6 +37,7 @@ const ChatBotWidget = ({
   handleNewMessage,
   onBotResponse,
   messages = [],
+  useInnerHTML = false,
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
@@ -142,14 +149,16 @@ const ChatBotWidget = ({
               <p
                 style={
                   msg.role === "assistant"
-                    ? botFontStyle
-                    : msg.role === "error"
-                    ? botFontStyle
-                    : { background: primaryColor }
+                  ? botFontStyle 
+                  : msg.role === "error"
+                  ? botFontStyle
+                  : { background: primaryColor }
                 }
-              >
-                {msg.content}
-              </p>
+                {...(useInnerHTML 
+                  ? {dangerouslySetInnerHTML: { __html: msg.content }}
+                  : {children: msg.content}
+                )}
+              />
             </li>
           ))}
           {typing && (
