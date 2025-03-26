@@ -1,5 +1,9 @@
 import React from "react";
 import "./style.css";
+interface Message {
+    role: string;
+    content: string;
+}
 interface ChatWidgetIOProps {
     callApi: (message: string) => Promise<string>;
     chatbotName?: string;
@@ -7,13 +11,14 @@ interface ChatWidgetIOProps {
     IncommingErrMsg?: string;
     primaryColor?: string;
     inputMsgPlaceholder?: string;
-    chatIcon?: any;
-    botIcon?: any;
+    chatIcon?: React.ReactNode;
+    botIcon?: React.ReactNode;
     botFontStyle?: React.CSSProperties;
     typingFontStyle?: React.CSSProperties;
-    handleNewMessage?: (message: any) => void;
+    handleNewMessage?: (message: Message) => void;
     onBotResponse?: (response: string) => void;
-    messages?: any[];
+    messages?: Message[];
+    useInnerHTML?: boolean;
 }
-declare const ChatBotWidget: ({ callApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, }: ChatWidgetIOProps) => React.JSX.Element;
+declare const ChatBotWidget: ({ callApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, useInnerHTML, }: ChatWidgetIOProps) => React.JSX.Element;
 export default ChatBotWidget;
