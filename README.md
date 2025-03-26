@@ -65,6 +65,7 @@ import { ChatBotWidget } from "chatbot-widget-ui";
     color: "#888",
     fontStyle: "italic",
   }}
+  useInnerHTML={true}
 />
 ```
 
@@ -142,6 +143,7 @@ const App = () => {
             color: "#888",
             fontStyle: "italic",
           }}
+          useInnerHTML={true}
         />
     </div>
   );
@@ -167,6 +169,8 @@ export default App;
 | `handleNewMessage`    | function | N/A                                               | Processes new messages and updates the conversation state.                          |
 | `onBotResponse`       | function | N/A                                               | Processes new messages and updates the conversation state.                          |
 | `messages`            | array    | `[]`                                              | The array of messages to display in the chat.                                       |
+| `useInnerHTML`        | Booloean | false                                             | Determines whether HTML content in messages should be rendered as inner HTML.       |
+|  |
 
 ## Deployment
 
