@@ -1,6 +1,6 @@
 ## Overview
 
-![Chatbot Demo](./chatbot.png)
+![Chatbot Demo](./images/chatbot.png)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]() [![npm version](https://img.shields.io/badge/npm-v10.9.0-green)](https://www.npmjs.com/package/chatbot-widget-ui) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
