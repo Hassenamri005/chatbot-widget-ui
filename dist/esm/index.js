@@ -59,13 +59,14 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = "@import url(\"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap\");\n\n/* Import Material Symbols Outlined font */\n@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');\n\n/* Import Material Symbols Rounded font */\n@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0');\n\n@keyframes style-module_color__9atXt {\n    0% {\n        background-position: 0 50%;\n    }\n\n    50% {\n        background-position: 100% 50%;\n    }\n\n    100% {\n        background-position: 0 50%;\n    }\n}\n\n.style-module_chatbotToggler__UG1t1 {\n    position: fixed;\n    bottom: 70px;\n    right: 40px;\n    outline: none;\n    border: none;\n    height: 40px;\n    width: 40px;\n    display: flex;\n    cursor: pointer;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    background: #4aa017;\n    transition: all 0.2s ease;\n    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),\n        0 32px 64px -48px rgba(0, 0, 0, 0.5);\n\n    &:hover {\n        background: #4aa017;\n    }\n\n    svg path {\n        fill: #fff;\n    }\n\n    @media (max-width: 991px) {\n        bottom: 20px;\n        right: 20px;\n    }\n\n    @media (max-width: 767px) {\n        bottom: 20px;\n        right: 20px;\n    }\n\n    @media (max-width: 575px) {\n        bottom: 20px;\n        right: 20px;\n    }\n\n    @media (max-width: 375px) {\n        bottom: 20px;\n        right: 20px;\n    }\n\n    @media (max-width: 320px) {\n        bottom: 20px;\n        right: 20px;\n    }\n}\n\nbody.style-module_showChatbot__GTMg6 .style-module_chatbotToggler__UG1t1 {\n    transform: rotate(90deg);\n    background: #4aa017;\n}\n\n.style-module_chatbotToggler__UG1t1 span {\n    color: #fff;\n    position: absolute;\n    font-size: 1.2em;\n    font-weight: 600;\n    transition: all 0.2s ease;\n}\n\n.style-module_chatbotToggler__UG1t1 span:last-child,\nbody.style-module_showChatbot__GTMg6 .style-module_chatbotToggler__UG1t1 span:first-child {\n    opacity: 0;\n}\n\nbody.style-module_showChatbot__GTMg6 .style-module_chatbotToggler__UG1t1 span:last-child {\n    opacity: 1;\n}\n\n.style-module_chatbot__vxZf3 {\n    position: fixed;\n    right: 70px;\n    bottom: 80px;\n    overflow: hidden;\n    width: 340px;\n    height: 520px;\n    transform: scale(0.5);\n    opacity: 0;\n    pointer-events: none;\n    background: #fff;\n    transform-origin: bottom right;\n    border-radius: 15px;\n    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),\n        0 32px 64px -48px rgba(0, 0, 0, 0.5);\n    transition: all 0.1s ease;\n}\n\nbody.style-module_showChatbot__GTMg6 .style-module_chatbot__vxZf3 {\n    opacity: 1;\n    pointer-events: auto;\n    transform: scale(1);\n}\n\n/* ChatBot */\n.style-module_chatbot__vxZf3 header {\n    background: #4aa017;\n    position: relative;\n    color: #fff;\n    padding: 15px 0;\n    text-align: center;\n    border-radius: 15px 15px 0 0;\n    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n}\n\n.style-module_chatbot__vxZf3 header span {\n    position: absolute;\n    right: 15px;\n    top: 50%;\n    display: none;\n    cursor: pointer;\n    transform: translateY(-50%);\n}\n\n@media screen and (max-width: 992px) {\n    .style-module_chatbot__vxZf3 header span {\n        display: block;\n    }\n}\n\n.style-module_chatbot__vxZf3 header span svg {\n    height: 20px;\n    width: 20px;\n    fill: #fff;\n}\n\n.style-module_chatbot__vxZf3 header span:hover {\n    opacity: 0.8;\n}\n\n.style-module_chatbot__vxZf3 header span:first-child {\n    right: 55px;\n}\n\n.style-module_chatbot__vxZf3 header span:last-child {\n    right: 15px;\n}\n\n.style-module_chatbot__vxZf3 header h2 {\n    color: #fff;\n    font-size: 1.4em;\n    font-weight: 600;\n    letter-spacing: 0.5px;\n}\n\n.style-module_chatbot__vxZf3 .style-module_chatbox__8B0hv {\n    overflow-y: auto;\n    padding: 15px 10px 100px;\n    /* Increased bottom padding */\n    height: 400px;\n    background: #fff;\n    border-radius: 0 0 15px 15px;\n    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu {\n    display: flex;\n    list-style: none;\n    margin: -1px 0 0;\n}\n\n.style-module_chatbot__vxZf3 :where(.style-module_chatbox__8B0hv, textarea)::-webkit-scrollbar {\n    width: 6px;\n}\n\n.style-module_chatbot__vxZf3 :where(.style-module_chatbox__8B0hv, textarea)::-webkit-scrollbar-track {\n    background: #fff;\n    border-radius: 25px;\n}\n\n.style-module_chatbot__vxZf3 :where(.style-module_chatbox__8B0hv, textarea)::-webkit-scrollbar-thumb {\n    background: #ccc;\n    border-radius: 25px;\n}\n\n.style-module_chatbot__vxZf3 :where(.style-module_chatbox__8B0hv, textarea)::-webkit-scrollbar-thumb:hover {\n    background: #b3b3b3;\n}\n\n.style-module_chatbox__8B0hv .style-module_incoming__7r3wQ span {\n    height: 30px;\n    width: 30px;\n    color: #fff;\n    align-self: flex-end;\n    background: #4aa017;\n    text-align: center;\n    line-height: 32px;\n    border-radius: 5px;\n    margin: 0 8px 2px 0;\n}\n\n.style-module_chatbox__8B0hv .style-module_outgoing__eI-Kd {\n    margin: 20px 0;\n    justify-content: flex-end;\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu p {\n    color: #fff;\n    font-size: 0.9em;\n    max-width: 75%;\n    padding: 5px 10px;\n    border-radius: 10px 10px 0 10px;\n    background: #4aa017;\n    line-height: 1.3;\n    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);\n}\n\n.style-module_chatbox__8B0hv .style-module_incoming__7r3wQ p {\n    color: black;\n    font-size: 0.9em;\n    background: #f2f2f2;\n    border-radius: 10px 10px 10px 0;\n    text-align: left;\n    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu p.style-module_error__FFVpQ {\n    color: #721c24;\n    background: #f8d7da;\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu p.style-module_error__FFVpQ::before {\n    content: \"!\";\n    color: #721c24;\n    font-weight: 600;\n    margin-right: 5px;\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu p.style-module_error__FFVpQ::after {\n    content: \"!\";\n    color: #721c24;\n    font-weight: 600;\n    margin-left: 5px;\n}\n\n.style-module_chatbox__8B0hv .style-module_chat__NBxBu p.style-module_error__FFVpQ {\n    color: #721c24;\n    background: #f8d7da;\n}\n\n@media (max-width: 375px) and (-webkit-min-device-pixel-ratio: 2),\n(max-width: 375px) and (min-device-pixel-ratio: 2) {\n    .style-module_chatbox__8B0hv .style-module_chat__NBxBu p.style-module_error__FFVpQ {\n        background: #f8d7da;\n        color: #721c24;\n    }\n}\n\n.style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    display: flex;\n    gap: 5px;\n    background: #fff;\n    padding: 5px 20px;\n    border-top: 1px solid #ccc;\n}\n\n.style-module_chatInput__ap6uI textarea {\n    height: 55px;\n    max-height: 150px;\n    /* Prevents excessive growth */\n    width: 100%;\n    border: none;\n    outline: none;\n    font-size: 0.95em;\n    resize: none;\n    padding: 16px 15px 16px 8px;\n    border-radius: 5px;\n    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);\n    overflow-y: auto;\n    /* Enables scrolling when needed */\n}\n\n.style-module_chatInput__ap6uI span {\n    align-self: flex-end;\n    height: 40px;\n    line-height: 55px;\n    color: #4aa017;\n    font-size: 1.35em;\n    cursor: pointer;\n    visibility: hidden;\n    transition: 0.3s ease;\n    justify-content: flex-end;\n    height: 100%;\n}\n\n.style-module_chatInput__ap6uI textarea:valid~span {\n    visibility: visible;\n}\n\n@media (max-width: 767px) {\n    .style-module_chatbot__vxZf3 {\n        width: 100%;\n        height: 100%;\n        border-radius: 0;\n        bottom: 0;\n        right: 0;\n    }\n\n    .style-module_chatbot__vxZf3 header span.style-module_close-btn__NBFEH {\n        display: block !important;\n        /* Ensure the close button is visible */\n        right: 15px;\n        top: 50%;\n        transform: translateY(-50%);\n        cursor: pointer;\n    }\n\n    .style-module_chatbot__vxZf3 header {\n        border-radius: 0;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI {\n        position: relative;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI textarea {\n        padding: 16px 15px 16px 0;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI span {\n        height: 55px;\n        line-height: 55px;\n        font-size: 1.35em;\n    }\n}\n\n@media (max-width: 575px) {\n    .style-module_chatbot__vxZf3 {\n        width: 100%;\n        height: 100%;\n        border-radius: 0;\n        bottom: 0;\n        right: 0;\n    }\n\n    .style-module_chatbot__vxZf3 header {\n        border-radius: 0;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI {\n        position: relative;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI textarea {\n        padding: 16px 15px 16px 0;\n    }\n\n    .style-module_chatbot__vxZf3 .style-module_chatInput__ap6uI span {\n        height: 55px;\n        line-height: 55px;\n        font-size: 1.35em;\n    }\n}";
-var styles = {"chatbotToggler":"style-module_chatbotToggler__UG1t1","showChatbot":"style-module_showChatbot__GTMg6","chatbot":"style-module_chatbot__vxZf3","chatbox":"style-module_chatbox__8B0hv","chat":"style-module_chat__NBxBu","incoming":"style-module_incoming__7r3wQ","outgoing":"style-module_outgoing__eI-Kd","chatInput":"style-module_chatInput__ap6uI"};
+var css_248z = "@import url(\"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap\");\n\n@keyframes style-module_cbwPopIn__hXwvF {\n    from {\n        opacity: 0;\n        transform: translateY(12px) scale(0.98);\n    }\n\n    to {\n        opacity: 1;\n        transform: translateY(0) scale(1);\n    }\n}\n\n@keyframes style-module_cbwBounce__g8i7y {\n\n    0%,\n    60%,\n    100% {\n        transform: translateY(0);\n        opacity: 0.4;\n    }\n\n    30% {\n        transform: translateY(-3px);\n        opacity: 1;\n    }\n}\n\n.style-module_chatbotToggler__UG1t1 {\n    position: fixed;\n    bottom: 24px;\n    right: 24px;\n    z-index: 1000;\n    outline: none;\n    border: none;\n    height: 60px;\n    width: 60px;\n    display: flex;\n    cursor: pointer;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: #fff;\n    background: var(--cbw-primary, #eb4034);\n    transition: transform 0.25s ease, box-shadow 0.25s ease;\n    box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.35);\n    box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--cbw-primary, #eb4034) 55%, transparent);\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbotToggler__UG1t1:hover {\n    transform: translateY(-2px) scale(1.04);\n}\n\n.style-module_chatbotToggler__UG1t1:active {\n    transform: translateY(0) scale(0.96);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n    transform: rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz:hover {\n    transform: rotate(90deg) translateY(-2px) scale(1.04);\n}\n\n.style-module_togglerIcon__dWA6z {\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n}\n\n.style-module_togglerIconClose__H1lw4 {\n    opacity: 0;\n    transform: scale(0.5) rotate(-90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIcon__dWA6z:not(.style-module_togglerIconClose__H1lw4) {\n    opacity: 0;\n    transform: scale(0.5) rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIconClose__H1lw4 {\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n}\n\n@media (max-width: 575px) {\n    .style-module_chatbotToggler__UG1t1 {\n        bottom: 16px;\n        right: 16px;\n        height: 52px;\n        width: 52px;\n    }\n}\n\n.style-module_chatbot__vxZf3 {\n    position: fixed;\n    right: 24px;\n    bottom: 96px;\n    z-index: 999;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    width: 380px;\n    max-width: calc(100vw - 32px);\n    height: 600px;\n    max-height: calc(100vh - 120px);\n    opacity: 0;\n    pointer-events: none;\n    background: #fff;\n    transform: translateY(16px) scale(0.96);\n    transform-origin: bottom right;\n    border-radius: 20px;\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.22), 0 8px 24px -8px rgba(15, 23, 42, 0.12);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbot__vxZf3.style-module_open__wk2iz {\n    opacity: 1;\n    pointer-events: auto;\n    transform: translateY(0) scale(1);\n    animation: style-module_cbwPopIn__hXwvF 0.22s ease;\n}\n\n/* ChatBot header */\n.style-module_chatbot__vxZf3 header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    flex: none;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    padding: 16px 16px 16px 18px;\n}\n\n.style-module_headerInfo__ANTjR {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    min-width: 0;\n}\n\n.style-module_headerAvatar__Zvyi8 {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.18);\n    color: #fff;\n}\n\n.style-module_chatbot__vxZf3 header h2 {\n    margin: 0;\n    color: #fff;\n    font-size: 1.05em;\n    font-weight: 600;\n    letter-spacing: 0.2px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.style-module_closeBtn__gzNIo {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: transparent;\n    color: #fff;\n    cursor: pointer;\n    opacity: 0.85;\n    transition: background 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_closeBtn__gzNIo:hover {\n    opacity: 1;\n    background: rgba(255, 255, 255, 0.16);\n}\n\n.style-module_chatbox__8B0hv {\n    flex: 1 1 auto;\n    overflow-y: auto;\n    scrollbar-width: thin;\n    scrollbar-color: #cbd5e1 transparent;\n    margin: 0;\n    padding: 16px 14px;\n    display: flex;\n    flex-direction: column;\n    background: #fafafa;\n}\n\n.style-module_chat__NBxBu {\n    display: flex;\n    align-items: flex-end;\n    list-style: none;\n    margin-top: 14px;\n    max-width: 100%;\n}\n\n.style-module_chat__NBxBu.style-module_grouped__LDa-Y {\n    margin-top: 4px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar {\n    width: 6px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-track,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb {\n    background: #cbd5e1;\n    border-radius: 25px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb:hover,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb:hover {\n    background: #94a3b8;\n}\n\n.style-module_avatar__U-ufJ {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    height: 28px;\n    width: 28px;\n    color: var(--cbw-primary, #eb4034);\n    background: color-mix(in srgb, var(--cbw-primary, #eb4034) 14%, #fff);\n    border-radius: 50%;\n    margin: 0 8px 0 0;\n}\n\n.style-module_incoming__7r3wQ.style-module_grouped__LDa-Y .style-module_avatar__U-ufJ {\n    visibility: hidden;\n}\n\n.style-module_outgoing__eI-Kd {\n    justify-content: flex-end;\n}\n\n.style-module_bubble__gohsH {\n    margin: 0;\n    color: #fff;\n    font-size: 0.9em;\n    max-width: 78%;\n    padding: 9px 13px;\n    border-radius: 16px 16px 16px 4px;\n    background: var(--cbw-primary, #eb4034);\n    line-height: 1.4;\n    word-break: break-word;\n    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);\n}\n\n.style-module_incoming__7r3wQ .style-module_bubble__gohsH {\n    color: #1f2430;\n    background: #f0f1f5;\n    border-radius: 16px 16px 16px 4px;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH {\n    background: var(--cbw-primary, #eb4034);\n    border-radius: 16px 16px 4px 16px;\n}\n\n.style-module_errorBubble__PaJbs {\n    color: #b3261e;\n    background: #fdecea !important;\n    border: 1px solid #f6c6c2;\n}\n\n.style-module_typingBubble__Dpd3r {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: #64748b;\n    font-style: italic;\n}\n\n.style-module_typingDots__sv6N6 {\n    display: inline-flex;\n    align-items: center;\n    gap: 3px;\n}\n\n.style-module_typingDots__sv6N6 i {\n    display: block;\n    width: 4px;\n    height: 4px;\n    border-radius: 50%;\n    background: currentColor;\n    animation: style-module_cbwBounce__g8i7y 1s infinite ease-in-out;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(2) {\n    animation-delay: 0.15s;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(3) {\n    animation-delay: 0.3s;\n}\n\n.style-module_chatInput__ap6uI {\n    flex: none;\n    display: flex;\n    align-items: flex-end;\n    gap: 8px;\n    background: #fff;\n    padding: 10px 12px;\n    border-top: 1px solid rgba(15, 23, 42, 0.08);\n}\n\n.style-module_chatInput__ap6uI textarea {\n    height: 40px;\n    max-height: 100px;\n    flex: 1 1 auto;\n    border: 1px solid rgba(15, 23, 42, 0.1);\n    outline: none;\n    font-family: inherit;\n    font-size: 0.9em;\n    resize: none;\n    padding: 10px 14px;\n    border-radius: 20px;\n    background: #f5f6f8;\n    overflow-y: auto;\n    transition: border-color 0.15s ease, background 0.15s ease;\n}\n\n.style-module_chatInput__ap6uI textarea:focus {\n    background: #fff;\n    border-color: var(--cbw-primary, #eb4034);\n}\n\n.style-module_sendBtn__CgRBw {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 40px;\n    height: 40px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    cursor: pointer;\n    transition: transform 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_sendBtn__CgRBw:hover:not(:disabled) {\n    transform: scale(1.06);\n}\n\n.style-module_sendBtn__CgRBw:active:not(:disabled) {\n    transform: scale(0.94);\n}\n\n.style-module_sendBtn__CgRBw:disabled {\n    opacity: 0.4;\n    cursor: not-allowed;\n}\n\n@media (max-width: 767px) {\n    .style-module_chatbot__vxZf3 {\n        width: 100%;\n        max-width: 100%;\n        height: 100%;\n        max-height: 100%;\n        border-radius: 0;\n        border: none;\n        bottom: 0;\n        right: 0;\n    }\n\n    .style-module_chatbot__vxZf3 header {\n        border-radius: 0;\n    }\n\n    .style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n        display: none;\n    }\n}\n";
+var styles = {"chatbotToggler":"style-module_chatbotToggler__UG1t1","open":"style-module_open__wk2iz","togglerIcon":"style-module_togglerIcon__dWA6z","togglerIconClose":"style-module_togglerIconClose__H1lw4","chatbot":"style-module_chatbot__vxZf3","headerInfo":"style-module_headerInfo__ANTjR","headerAvatar":"style-module_headerAvatar__Zvyi8","closeBtn":"style-module_closeBtn__gzNIo","chatbox":"style-module_chatbox__8B0hv","chat":"style-module_chat__NBxBu","grouped":"style-module_grouped__LDa-Y","chatInput":"style-module_chatInput__ap6uI","avatar":"style-module_avatar__U-ufJ","incoming":"style-module_incoming__7r3wQ","outgoing":"style-module_outgoing__eI-Kd","bubble":"style-module_bubble__gohsH","errorBubble":"style-module_errorBubble__PaJbs","typingBubble":"style-module_typingBubble__Dpd3r","typingDots":"style-module_typingDots__sv6N6","sendBtn":"style-module_sendBtn__CgRBw"};
 styleInject(css_248z);
 
 const ChatBotWidget = ({ callApi, chatbotName = "Chatbot", isTypingMessage = "Typing...", IncommingErrMsg = "Oops! Something went wrong. Please try again.", primaryColor = "#eb4034", inputMsgPlaceholder = "Send a Message", chatIcon = React.createElement(ChatIcon, null), botIcon = React.createElement(BotIcon, null), botFontStyle = {}, typingFontStyle = {}, handleNewMessage, onBotResponse, messages = [], useInnerHTML = false, }) => {
     const [userMessage, setUserMessage] = useState("");
     const [typing, setTyping] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const chatInputRef = useRef(null);
     const chatboxRef = useRef(null);
     const handleChat = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,6 +74,9 @@ const ChatBotWidget = ({ callApi, chatbotName = "Chatbot", isTypingMessage = "Ty
         if (!trimmedMessage)
             return;
         setUserMessage("");
+        if (chatInputRef.current) {
+            chatInputRef.current.style.height = "auto";
+        }
         // Display outgoing message
         const outgoingMessage = { role: "user", content: trimmedMessage };
         handleNewMessage === null || handleNewMessage === void 0 ? void 0 : handleNewMessage(outgoingMessage);
@@ -94,10 +98,13 @@ const ChatBotWidget = ({ callApi, chatbotName = "Chatbot", isTypingMessage = "Ty
     });
     const handleInputChange = (event) => {
         setUserMessage(event.target.value);
+        const el = chatInputRef.current;
+        if (!el)
+            return;
         // Reset height to auto before calculating new height
-        chatInputRef.current.style.height = "auto";
+        el.style.height = "auto";
         // Adjust the height dynamically based on content
-        chatInputRef.current.style.height = `${Math.min(chatInputRef.current.scrollHeight, 80)}px`;
+        el.style.height = `${Math.min(el.scrollHeight, 80)}px`;
     };
     const handleKeyPress = (event) => {
         if (event.key === "Enter" && !event.shiftKey && window.innerWidth > 800) {
@@ -105,88 +112,66 @@ const ChatBotWidget = ({ callApi, chatbotName = "Chatbot", isTypingMessage = "Ty
             handleChat();
         }
     };
-    const toggleChatbot = () => {
-        document.body.classList.toggle(styles.showChatbot);
-    };
+    const toggleChatbot = () => setIsOpen((open) => !open);
     useEffect(() => {
-        const closeBtn = document.querySelector(".close-btn");
-        if (closeBtn) {
-            const handleClose = () => toggleChatbot();
-            // Add event listeners for both click and touch events
-            closeBtn.addEventListener("click", handleClose);
-            closeBtn.addEventListener("touchend", handleClose);
-            // Cleanup function to remove the event listeners
-            return () => {
-                closeBtn.removeEventListener("click", handleClose);
-                closeBtn.removeEventListener("touchend", handleClose);
-            };
-        }
-    }, []);
-    useEffect(() => {
+        var _a;
         // Scroll to bottom of chatbox when messages change
-        chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
-    }, [messages]);
-    return (React.createElement("div", { className: "chatbot-container", style: {
-            background: primaryColor,
-            backgroundColor: primaryColor,
-        } },
-        React.createElement("button", { className: styles.chatbotToggler, onClick: toggleChatbot, style: { background: primaryColor } },
-            React.createElement("span", { className: "material-symbols-rounded" }, chatIcon),
-            React.createElement("span", { className: "material-symbols-outlined" }, "Close")),
-        React.createElement("div", { className: styles.chatbot },
-            React.createElement("header", { style: { background: primaryColor } },
-                React.createElement("h2", null, chatbotName),
-                React.createElement("span", { className: "close-btn material-symbols-outlined", onClick: toggleChatbot }, "close")),
-            React.createElement("ul", { className: styles.chatbox, ref: chatboxRef },
-                messages.map((msg, index) => (React.createElement("li", { key: index, className: `${styles.chat} ${msg.role === "user" ? styles.outgoing : styles.incoming}` },
-                    msg.role !== "user" && (React.createElement("span", { className: "material-symbols-outlined" }, botIcon)),
-                    React.createElement("p", Object.assign({ style: msg.role === "assistant"
-                            ? botFontStyle
-                            : msg.role === "error"
-                                ? botFontStyle
-                                : { background: primaryColor } }, (useInnerHTML
-                        ? { dangerouslySetInnerHTML: { __html: msg.content } }
-                        : { children: msg.content })))))),
-                typing && (React.createElement("li", { key: Date.now(), className: `${styles.chat} ${styles.incoming}` },
-                    React.createElement("span", { className: "material-symbols-outlined" }, botIcon),
-                    React.createElement("p", { style: typingFontStyle }, isTypingMessage)))),
+        (_a = chatboxRef.current) === null || _a === void 0 ? void 0 : _a.scrollTo({
+            top: chatboxRef.current.scrollHeight,
+            behavior: "smooth",
+        });
+    }, [messages, typing]);
+    const canSend = userMessage.trim().length > 0 && !typing;
+    return (React.createElement("div", { className: "chatbot-container", style: { ["--cbw-primary"]: primaryColor } },
+        React.createElement("button", { type: "button", className: `${styles.chatbotToggler} ${isOpen ? styles.open : ""}`, onClick: toggleChatbot, "aria-label": isOpen ? "Close chat" : "Open chat", "aria-expanded": isOpen },
+            React.createElement("span", { className: styles.togglerIcon }, chatIcon),
+            React.createElement("span", { className: `${styles.togglerIcon} ${styles.togglerIconClose}` },
+                React.createElement(CloseIcon, null))),
+        React.createElement("div", { className: `${styles.chatbot} ${isOpen ? styles.open : ""}`, role: "dialog", "aria-label": `${chatbotName} chat window`, "aria-hidden": !isOpen },
+            React.createElement("header", null,
+                React.createElement("div", { className: styles.headerInfo },
+                    React.createElement("span", { className: styles.headerAvatar }, botIcon),
+                    React.createElement("h2", null, chatbotName)),
+                React.createElement("button", { type: "button", className: styles.closeBtn, onClick: toggleChatbot, "aria-label": "Close chat" },
+                    React.createElement(CloseIcon, null))),
+            React.createElement("ul", { className: styles.chatbox, ref: chatboxRef, "aria-live": "polite" },
+                messages.map((msg, index) => {
+                    const isUser = msg.role === "user";
+                    const isError = msg.role === "error";
+                    const prevMsg = messages[index - 1];
+                    const grouped = !!prevMsg && (prevMsg.role === "user") === isUser;
+                    return (React.createElement("li", { key: index, className: `${styles.chat} ${isUser ? styles.outgoing : styles.incoming} ${grouped ? styles.grouped : ""}` },
+                        !isUser && React.createElement("span", { className: styles.avatar }, botIcon),
+                        React.createElement("p", Object.assign({ className: `${styles.bubble} ${isError ? styles.errorBubble : ""}`, style: !isUser ? botFontStyle : undefined }, (useInnerHTML
+                            ? { dangerouslySetInnerHTML: { __html: msg.content } }
+                            : { children: msg.content })))));
+                }),
+                typing && (React.createElement("li", { className: `${styles.chat} ${styles.incoming}` },
+                    React.createElement("span", { className: styles.avatar }, botIcon),
+                    React.createElement("p", { className: `${styles.bubble} ${styles.typingBubble}`, style: typingFontStyle },
+                        isTypingMessage,
+                        React.createElement("span", { className: styles.typingDots, "aria-hidden": "true" },
+                            React.createElement("i", null),
+                            React.createElement("i", null),
+                            React.createElement("i", null)))))),
             React.createElement("div", { className: styles.chatInput },
-                React.createElement("textarea", { ref: chatInputRef, placeholder: inputMsgPlaceholder, spellCheck: "false", required: true, value: userMessage, onChange: handleInputChange, onKeyDown: handleKeyPress, maxLength: 500 }),
-                React.createElement("span", { id: "send-btn", className: "material-symbols-outlined", onClick: handleChat, style: {
-                        color: primaryColor,
-                    } }, "send")))));
+                React.createElement("textarea", { ref: chatInputRef, placeholder: inputMsgPlaceholder, spellCheck: "false", required: true, value: userMessage, onChange: handleInputChange, onKeyDown: handleKeyPress, maxLength: 500, rows: 1, "aria-label": inputMsgPlaceholder }),
+                React.createElement("button", { type: "button", className: styles.sendBtn, onClick: handleChat, disabled: !canSend, "aria-label": "Send message" },
+                    React.createElement(SendIcon, null))))));
 };
-const ChatIcon = () => {
-    return (React.createElement(React.Fragment, null,
-        React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", xmlSpace: "preserve", width: 18, height: 18, fill: "#fff", stroke: "#fff", viewBox: "0 0 58 58" },
-            React.createElement("path", { d: "M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z", style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 15, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 29, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 43, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }))));
-};
-const BotIcon = () => {
-    return (React.createElement(React.Fragment, null,
-        React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", xmlSpace: "preserve", width: 18, height: 18, fill: "#fff", stroke: "#fff", viewBox: "0 0 58 58" },
-            React.createElement("path", { d: "M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z", style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 15, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 29, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }),
-            React.createElement("circle", { cx: 43, cy: 24.799, r: 3, style: {
-                    fill: "#fff",
-                } }))));
-};
+const ChatIcon = () => (React.createElement("svg", { viewBox: "0 0 24 24", width: 22, height: 22, fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+    React.createElement("path", { d: "M4 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8c-1.06 0-2.07-.2-3-.57L4.5 20l1.07-3.5A7.96 7.96 0 0 1 4 12Z", stroke: "currentColor", strokeWidth: 1.8, strokeLinejoin: "round", strokeLinecap: "round" })));
+const CloseIcon = () => (React.createElement("svg", { viewBox: "0 0 24 24", width: 20, height: 20, fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+    React.createElement("path", { d: "M6 6l12 12M18 6 6 18", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" })));
+const SendIcon = () => (React.createElement("svg", { viewBox: "0 0 24 24", width: 18, height: 18, fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+    React.createElement("path", { d: "M21 3 3 10.5l7.5 2.9L13.5 21 21 3Z", stroke: "currentColor", strokeWidth: 1.8, strokeLinejoin: "round", strokeLinecap: "round" }),
+    React.createElement("path", { d: "M10.5 13.4 21 3", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" })));
+const BotIcon = () => (React.createElement("svg", { viewBox: "0 0 24 24", width: 18, height: 18, fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+    React.createElement("rect", { x: 4, y: 8, width: 16, height: 12, rx: 4, stroke: "currentColor", strokeWidth: 1.8 }),
+    React.createElement("path", { d: "M12 8V5", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" }),
+    React.createElement("circle", { cx: 12, cy: 3.5, r: 1.2, fill: "currentColor" }),
+    React.createElement("circle", { cx: 9, cy: 14, r: 1.3, fill: "currentColor" }),
+    React.createElement("circle", { cx: 15, cy: 14, r: 1.3, fill: "currentColor" }),
+    React.createElement("path", { d: "M9 17.5c1 .8 5 .8 6 0", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" })));
 
 export { ChatBotWidget };

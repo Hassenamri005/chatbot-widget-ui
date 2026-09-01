@@ -41,14 +41,18 @@ const ChatBotWidget = ({
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
-  const chatInputRef = useRef<any>(null);
-  const chatboxRef = useRef<any>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const chatInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const chatboxRef = useRef<HTMLUListElement | null>(null);
 
   const handleChat = async () => {
     const trimmedMessage = userMessage.trim();
     if (!trimmedMessage) return;
 
     setUserMessage("");
+    if (chatInputRef.current) {
+      chatInputRef.current.style.height = "auto";
+    }
 
     // Display outgoing message
     const outgoingMessage = { role: "user", content: trimmedMessage };
@@ -74,14 +78,14 @@ const ChatBotWidget = ({
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserMessage(event.target.value);
 
+    const el = chatInputRef.current;
+    if (!el) return;
+
     // Reset height to auto before calculating new height
-    chatInputRef.current.style.height = "auto";
+    el.style.height = "auto";
 
     // Adjust the height dynamically based on content
-    chatInputRef.current.style.height = `${Math.min(
-      chatInputRef.current.scrollHeight,
-      80
-    )}px`;
+    el.style.height = `${Math.min(el.scrollHeight, 80)}px`;
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -91,87 +95,97 @@ const ChatBotWidget = ({
     }
   };
 
-  const toggleChatbot = () => {
-    document.body.classList.toggle(styles.showChatbot);
-  };
-
-  useEffect(() => {
-    const closeBtn = document.querySelector(".close-btn");
-    if (closeBtn) {
-      const handleClose = () => toggleChatbot();
-
-      // Add event listeners for both click and touch events
-      closeBtn.addEventListener("click", handleClose);
-      closeBtn.addEventListener("touchend", handleClose);
-
-      // Cleanup function to remove the event listeners
-      return () => {
-        closeBtn.removeEventListener("click", handleClose);
-        closeBtn.removeEventListener("touchend", handleClose);
-      };
-    }
-  }, []);
+  const toggleChatbot = () => setIsOpen((open) => !open);
 
   useEffect(() => {
     // Scroll to bottom of chatbox when messages change
-    chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
-  }, [messages]);
+    chatboxRef.current?.scrollTo({
+      top: chatboxRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, typing]);
+
+  const canSend = userMessage.trim().length > 0 && !typing;
 
   return (
     <div
       className="chatbot-container"
-      style={{
-        background: primaryColor,
-        backgroundColor: primaryColor,
-      }}
+      style={{ ["--cbw-primary" as string]: primaryColor } as React.CSSProperties}
     >
       <button
-        className={styles.chatbotToggler}
+        type="button"
+        className={`${styles.chatbotToggler} ${isOpen ? styles.open : ""}`}
         onClick={toggleChatbot}
-        style={{ background: primaryColor }}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-expanded={isOpen}
       >
-        <span className="material-symbols-rounded">{chatIcon}</span>
-        <span className="material-symbols-outlined">Close</span>
+        <span className={styles.togglerIcon}>{chatIcon}</span>
+        <span className={`${styles.togglerIcon} ${styles.togglerIconClose}`}>
+          <CloseIcon />
+        </span>
       </button>
-      <div className={styles.chatbot}>
-        <header style={{ background: primaryColor }}>
-          <h2>{chatbotName}</h2>
-          <span
-            className="close-btn material-symbols-outlined"
+
+      <div
+        className={`${styles.chatbot} ${isOpen ? styles.open : ""}`}
+        role="dialog"
+        aria-label={`${chatbotName} chat window`}
+        aria-hidden={!isOpen}
+      >
+        <header>
+          <div className={styles.headerInfo}>
+            <span className={styles.headerAvatar}>{botIcon}</span>
+            <h2>{chatbotName}</h2>
+          </div>
+          <button
+            type="button"
+            className={styles.closeBtn}
             onClick={toggleChatbot}
+            aria-label="Close chat"
           >
-            close
-          </span>
+            <CloseIcon />
+          </button>
         </header>
-        <ul className={styles.chatbox} ref={chatboxRef}>
-          {messages.map((msg, index) => (
-            <li
-              key={index}
-              className={`${styles.chat} ${
-                msg.role === "user" ? styles.outgoing : styles.incoming
-              }`}
-            >
-              {msg.role !== "user" && (
-                <span className="material-symbols-outlined">{botIcon}</span>
-              )}
-              <p
-                style={
-                  msg.role === "assistant"
-                    ? botFontStyle
-                    : msg.role === "error"
-                    ? botFontStyle
-                    : { background: primaryColor }
-                }
-                {...(useInnerHTML
-                  ? { dangerouslySetInnerHTML: { __html: msg.content } }
-                  : { children: msg.content })}
-              />
-            </li>
-          ))}
+        <ul className={styles.chatbox} ref={chatboxRef} aria-live="polite">
+          {messages.map((msg, index) => {
+            const isUser = msg.role === "user";
+            const isError = msg.role === "error";
+            const prevMsg = messages[index - 1];
+            const grouped = !!prevMsg && (prevMsg.role === "user") === isUser;
+
+            return (
+              <li
+                key={index}
+                className={`${styles.chat} ${
+                  isUser ? styles.outgoing : styles.incoming
+                } ${grouped ? styles.grouped : ""}`}
+              >
+                {!isUser && <span className={styles.avatar}>{botIcon}</span>}
+                <p
+                  className={`${styles.bubble} ${
+                    isError ? styles.errorBubble : ""
+                  }`}
+                  style={!isUser ? botFontStyle : undefined}
+                  {...(useInnerHTML
+                    ? { dangerouslySetInnerHTML: { __html: msg.content } }
+                    : { children: msg.content })}
+                />
+              </li>
+            );
+          })}
           {typing && (
-            <li key={Date.now()} className={`${styles.chat} ${styles.incoming}`}>
-              <span className="material-symbols-outlined">{botIcon}</span>
-              <p style={typingFontStyle}>{isTypingMessage}</p>
+            <li className={`${styles.chat} ${styles.incoming}`}>
+              <span className={styles.avatar}>{botIcon}</span>
+              <p
+                className={`${styles.bubble} ${styles.typingBubble}`}
+                style={typingFontStyle}
+              >
+                {isTypingMessage}
+                <span className={styles.typingDots} aria-hidden="true">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+              </p>
             </li>
           )}
         </ul>
@@ -185,115 +199,64 @@ const ChatBotWidget = ({
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
             maxLength={500}
+            rows={1}
+            aria-label={inputMsgPlaceholder}
           />
-          <span
-            id="send-btn"
-            className="material-symbols-outlined"
+          <button
+            type="button"
+            className={styles.sendBtn}
             onClick={handleChat}
-            style={{
-              color: primaryColor,
-            }}
+            disabled={!canSend}
+            aria-label="Send message"
           >
-            send
-          </span>
+            <SendIcon />
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-const ChatIcon = () => {
-  return (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        xmlSpace="preserve"
-        width={18}
-        height={18}
-        fill="#fff"
-        stroke="#fff"
-        viewBox="0 0 58 58"
-      >
-        <path
-          d="M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z"
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={15}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={29}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={43}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-      </svg>
-    </>
-  );
-};
+const ChatIcon = () => (
+  <svg viewBox="0 0 24 24" width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M4 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8c-1.06 0-2.07-.2-3-.57L4.5 20l1.07-3.5A7.96 7.96 0 0 1 4 12Z"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
-const BotIcon = () => {
-  return (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        xmlSpace="preserve"
-        width={18}
-        height={18}
-        fill="#fff"
-        stroke="#fff"
-        viewBox="0 0 58 58"
-      >
-        <path
-          d="M53 3.293H5c-2.722 0-5 2.278-5 5v33c0 2.722 2.278 5 5 5h27.681l-4.439-5.161a1 1 0 1 1 1.517-1.304l4.998 5.811L43 54.707v-8.414h10c2.722 0 5-2.278 5-5v-33c0-2.722-2.278-5-5-5z"
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={15}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={29}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-        <circle
-          cx={43}
-          cy={24.799}
-          r={3}
-          style={{
-            fill: "#fff",
-          }}
-        />
-      </svg>
-    </>
-  );
-};
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" width={20} height={20} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+  </svg>
+);
+
+const SendIcon = () => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M21 3 3 10.5l7.5 2.9L13.5 21 21 3Z"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+    <path d="M10.5 13.4 21 3" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" />
+  </svg>
+);
+
+const BotIcon = () => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x={4} y={8} width={16} height={12} rx={4} stroke="currentColor" strokeWidth={1.8} />
+    <path d="M12 8V5" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" />
+    <circle cx={12} cy={3.5} r={1.2} fill="currentColor" />
+    <circle cx={9} cy={14} r={1.3} fill="currentColor" />
+    <circle cx={15} cy={14} r={1.3} fill="currentColor" />
+    <path d="M9 17.5c1 .8 5 .8 6 0" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
+  </svg>
+);
 
 export default ChatBotWidget;
