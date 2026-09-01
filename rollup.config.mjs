@@ -4,8 +4,13 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
+import { createRequire } from "node:module";
 
-import packageJson from "./package.json" assert { type: "json" };
+// Read via createRequire instead of a JSON import attribute: the
+// "assert { type: 'json' }" / "with { type: 'json' }" syntax has changed
+// across Node versions (removed in Node 22+, required in others), so this
+// avoids depending on Node-version-specific import syntax entirely.
+const packageJson = createRequire(import.meta.url)("./package.json");
 
 export default [
   {
