@@ -6,13 +6,6 @@
 /* Import Material Symbols Rounded font */
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-
 @keyframes color {
     0% {
         background-position: 0 50%;
@@ -27,9 +20,9 @@
     }
 }
 
-.chatbot-toggler {
+.chatbotToggler {
     position: fixed;
-    bottom: 40px;
+    bottom: 70px;
     right: 40px;
     outline: none;
     border: none;
@@ -79,25 +72,25 @@
     }
 }
 
-body.show-chatbot .chatbot-toggler {
+body.showChatbot .chatbotToggler {
     transform: rotate(90deg);
     background: #4aa017;
 }
 
-.chatbot-toggler span {
+.chatbotToggler span {
     color: #fff;
     position: absolute;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: 600;
     transition: all 0.2s ease;
 }
 
-.chatbot-toggler span:last-child,
-body.show-chatbot .chatbot-toggler span:first-child {
+.chatbotToggler span:last-child,
+body.showChatbot .chatbotToggler span:first-child {
     opacity: 0;
 }
 
-body.show-chatbot .chatbot-toggler span:last-child {
+body.showChatbot .chatbotToggler span:last-child {
     opacity: 1;
 }
 
@@ -115,11 +108,11 @@ body.show-chatbot .chatbot-toggler span:last-child {
     transform-origin: bottom right;
     border-radius: 15px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-        0 32px 64px -48px rgba (0, 0, 0, 0.5);
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
     transition: all 0.1s ease;
 }
 
-body.show-chatbot .chatbot {
+body.showChatbot .chatbot {
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
@@ -171,7 +164,7 @@ body.show-chatbot .chatbot {
 
 .chatbot header h2 {
     color: #fff;
-    font-size: 1.4rem;
+    font-size: 1.4em;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -225,12 +218,11 @@ body.show-chatbot .chatbot {
 .chatbox .outgoing {
     margin: 20px 0;
     justify-content: flex-end;
-    font-size: 0.8rem;
 }
 
 .chatbox .chat p {
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     max-width: 75%;
     padding: 5px 10px;
     border-radius: 10px 10px 0 10px;
@@ -241,7 +233,7 @@ body.show-chatbot .chatbot {
 
 .chatbox .incoming p {
     color: black;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     background: #f2f2f2;
     border-radius: 10px 10px 10px 0;
     text-align: left;
@@ -280,7 +272,7 @@ body.show-chatbot .chatbot {
     }
 }
 
-.chatbot .chat-input {
+.chatbot .chatInput {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -291,14 +283,14 @@ body.show-chatbot .chatbot {
     border-top: 1px solid #ccc;
 }
 
-.chat-input textarea {
+.chatInput textarea {
     height: 55px;
     max-height: 150px;
     /* Prevents excessive growth */
     width: 100%;
     border: none;
     outline: none;
-    font-size: 0.95rem;
+    font-size: 0.95em;
     resize: none;
     padding: 16px 15px 16px 8px;
     border-radius: 5px;
@@ -307,12 +299,12 @@ body.show-chatbot .chatbot {
     /* Enables scrolling when needed */
 }
 
-.chat-input span {
+.chatInput span {
     align-self: flex-end;
     height: 40px;
     line-height: 55px;
     color: #4aa017;
-    font-size: 1.35rem;
+    font-size: 1.35em;
     cursor: pointer;
     visibility: hidden;
     transition: 0.3s ease;
@@ -320,7 +312,7 @@ body.show-chatbot .chatbot {
     height: 100%;
 }
 
-.chat-input textarea:valid~span {
+.chatInput textarea:valid~span {
     visibility: visible;
 }
 
@@ -346,18 +338,18 @@ body.show-chatbot .chatbot {
         border-radius: 0;
     }
 
-    .chatbot .chat-input {
+    .chatbot .chatInput {
         position: relative;
     }
 
-    .chatbot .chat-input textarea {
+    .chatbot .chatInput textarea {
         padding: 16px 15px 16px 0;
     }
 
-    .chatbot .chat-input span {
+    .chatbot .chatInput span {
         height: 55px;
         line-height: 55px;
-        font-size: 1.35rem;
+        font-size: 1.35em;
     }
 }
 
@@ -374,17 +366,17 @@ body.show-chatbot .chatbot {
         border-radius: 0;
     }
 
-    .chatbot .chat-input {
+    .chatbot .chatInput {
         position: relative;
     }
 
-    .chatbot .chat-input textarea {
+    .chatbot .chatInput textarea {
         padding: 16px 15px 16px 0;
     }
 
-    .chatbot .chat-input span {
+    .chatbot .chatInput span {
         height: 55px;
         line-height: 55px;
-        font-size: 1.35rem;
+        font-size: 1.35em;
     }
 }

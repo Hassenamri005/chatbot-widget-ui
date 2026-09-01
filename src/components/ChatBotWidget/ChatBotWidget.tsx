@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./style.css";
+import styles from './style.module.css';
 
 interface Message {
   role: string;
@@ -92,15 +92,7 @@ const ChatBotWidget = ({
   };
 
   const toggleChatbot = () => {
-    const body = document.body;
-
-    if (body.classList.contains("show-chatbot")) {
-      body.classList.remove("show-chatbot");
-      body.classList.add("hide-chatbot");
-    } else {
-      body.classList.remove("hide-chatbot");
-      body.classList.add("show-chatbot");
-    }
+    document.body.classList.toggle(styles.showChatbot);
   };
 
   useEffect(() => {
@@ -134,14 +126,14 @@ const ChatBotWidget = ({
       }}
     >
       <button
-        className="chatbot-toggler"
+        className={styles.chatbotToggler}
         onClick={toggleChatbot}
         style={{ background: primaryColor }}
       >
         <span className="material-symbols-rounded">{chatIcon}</span>
         <span className="material-symbols-outlined">Close</span>
       </button>
-      <div className="chatbot">
+      <div className={styles.chatbot}>
         <header style={{ background: primaryColor }}>
           <h2>{chatbotName}</h2>
           <span
@@ -151,12 +143,12 @@ const ChatBotWidget = ({
             close
           </span>
         </header>
-        <ul className="chatbox" ref={chatboxRef}>
+        <ul className={styles.chatbox} ref={chatboxRef}>
           {messages.map((msg, index) => (
             <li
               key={index}
-              className={`chat ${
-                msg.role === "user" ? "outgoing" : "incoming"
+              className={`${styles.chat} ${
+                msg.role === "user" ? styles.outgoing : styles.incoming
               }`}
             >
               {msg.role !== "user" && (
@@ -177,13 +169,13 @@ const ChatBotWidget = ({
             </li>
           ))}
           {typing && (
-            <li key={Date.now()} className="chat incoming">
+            <li key={Date.now()} className={`${styles.chat} ${styles.incoming}`}>
               <span className="material-symbols-outlined">{botIcon}</span>
               <p style={typingFontStyle}>{isTypingMessage}</p>
             </li>
           )}
         </ul>
-        <div className="chat-input">
+        <div className={styles.chatInput}>
           <textarea
             ref={chatInputRef}
             placeholder={inputMsgPlaceholder}

@@ -185,3 +185,21 @@ npm login
 
 npm publish --access public
 ```
+
+## Update dist
+
+Note: Only after updating dist content can other project receive updates
+
+```bash
+nvm use 16
+
+npm run rollup-build-lib
+```
+
+## Encounter issue
+
+```bash
+nvm use 16
+rm -rf package-lock.json node_modules
+npm install
+```
