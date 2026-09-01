@@ -8,6 +8,9 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
+  "workspaces": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Hassenamri005/chatbot-widget-ui"
