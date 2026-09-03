@@ -42,6 +42,7 @@ const ChatBotWidget = ({
   const [userMessage, setUserMessage] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const chatInputRef = useRef<HTMLTextAreaElement | null>(null);
   const chatboxRef = useRef<HTMLUListElement | null>(null);
 
@@ -95,7 +96,18 @@ const ChatBotWidget = ({
     }
   };
 
-  const toggleChatbot = () => setIsOpen((open) => !open);
+  const toggleChatbot = () =>
+    setIsOpen((open) => {
+      if (open) setIsMaximized(false); // reset so it reopens at normal size
+      return !open;
+    });
+
+  const closeChat = () => {
+    setIsOpen(false);
+    setIsMaximized(false);
+  };
+
+  const toggleMaximize = () => setIsMaximized((maximized) => !maximized);
 
   useEffect(() => {
     // Scroll to bottom of chatbox when messages change
@@ -126,7 +138,9 @@ const ChatBotWidget = ({
       </button>
 
       <div
-        className={`${styles.chatbot} ${isOpen ? styles.open : ""}`}
+        className={`${styles.chatbot} ${isOpen ? styles.open : ""} ${
+          isMaximized ? styles.maximized : ""
+        }`}
         role="dialog"
         aria-label={`${chatbotName} chat window`}
         aria-hidden={!isOpen}
@@ -136,14 +150,25 @@ const ChatBotWidget = ({
             <span className={styles.headerAvatar}>{botIcon}</span>
             <h2>{chatbotName}</h2>
           </div>
-          <button
-            type="button"
-            className={styles.closeBtn}
-            onClick={toggleChatbot}
-            aria-label="Close chat"
-          >
-            <CloseIcon />
-          </button>
+          <div className={styles.headerActions}>
+            <button
+              type="button"
+              className={styles.maximizeBtn}
+              onClick={toggleMaximize}
+              aria-label={isMaximized ? "Restore chat size" : "Maximize chat"}
+              aria-pressed={isMaximized}
+            >
+              {isMaximized ? <CollapseIcon /> : <ExpandIcon />}
+            </button>
+            <button
+              type="button"
+              className={styles.closeBtn}
+              onClick={closeChat}
+              aria-label="Close chat"
+            >
+              <CloseIcon />
+            </button>
+          </div>
         </header>
         <ul className={styles.chatbox} ref={chatboxRef} aria-live="polite">
           {messages.map((msg, index) => {
@@ -232,6 +257,30 @@ const ChatIcon = () => (
 const CloseIcon = () => (
   <svg viewBox="0 0 24 24" width={20} height={20} fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+  </svg>
+);
+
+const ExpandIcon = () => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const CollapseIcon = () => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
