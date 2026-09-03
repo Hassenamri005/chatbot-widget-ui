@@ -7,7 +7,17 @@ interface Message {
 }
 
 interface ChatWidgetIOProps {
-  callApi: (message: string) => Promise<string>;
+  // Either callApi or streamApi is required (streamApi takes priority when
+  // both are given).
+  callApi?: (message: string) => Promise<string>;
+  // Optional streaming variant. When provided, it's used instead of callApi:
+  // call onChunk with the accumulated text as it streams in (the bubble
+  // updates live), then resolve with the final full text once the stream
+  // ends, same as callApi would.
+  streamApi?: (
+    message: string,
+    onChunk: (textSoFar: string) => void
+  ) => Promise<string>;
   chatbotName?: string;
   isTypingMessage?: string;
   IncommingErrMsg?: string;
@@ -25,6 +35,7 @@ interface ChatWidgetIOProps {
 
 const ChatBotWidget = ({
   callApi,
+  streamApi,
   chatbotName = "Chatbot",
   isTypingMessage = "Typing...",
   IncommingErrMsg = "Oops! Something went wrong. Please try again.",
@@ -41,6 +52,7 @@ const ChatBotWidget = ({
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
+  const [streamingText, setStreamingText] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const chatInputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -62,8 +74,19 @@ const ChatBotWidget = ({
     try {
       setTyping(true);
 
-      // Use the custom API call function
-      const botResponse = await callApi(trimmedMessage);
+      let botResponse: string;
+      if (streamApi) {
+        // Streaming: onChunk updates the live bubble as text arrives.
+        botResponse = await streamApi(trimmedMessage, (textSoFar) =>
+          setStreamingText(textSoFar)
+        );
+      } else if (callApi) {
+        botResponse = await callApi(trimmedMessage);
+      } else {
+        throw new Error(
+          "ChatBotWidget: either the `callApi` or `streamApi` prop is required."
+        );
+      }
 
       // Call the callback function with the bot's response
       onBotResponse?.(botResponse);
@@ -73,6 +96,7 @@ const ChatBotWidget = ({
       handleNewMessage?.(errorMessage);
     } finally {
       setTyping(false);
+      setStreamingText(null);
     }
   };
 
@@ -115,7 +139,7 @@ const ChatBotWidget = ({
       top: chatboxRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [messages, typing]);
+  }, [messages, typing, streamingText]);
 
   const canSend = userMessage.trim().length > 0 && !typing;
 
@@ -124,12 +148,19 @@ const ChatBotWidget = ({
       className="chatbot-container"
       style={{ ["--cbw-primary" as string]: primaryColor } as React.CSSProperties}
     >
+      {/* Hidden while maximized: the chat panel then covers the full
+          viewport, so this floating button would sit right on top of the
+          send button in the bottom-right corner. The header's close button
+          still closes the chat in that state. */}
       <button
         type="button"
-        className={`${styles.chatbotToggler} ${isOpen ? styles.open : ""}`}
+        className={`${styles.chatbotToggler} ${isOpen ? styles.open : ""} ${
+          isMaximized ? styles.togglerHidden : ""
+        }`}
         onClick={toggleChatbot}
         aria-label={isOpen ? "Close chat" : "Open chat"}
         aria-expanded={isOpen}
+        aria-hidden={isMaximized}
       >
         <span className={styles.togglerIcon}>{chatIcon}</span>
         <span className={`${styles.togglerIcon} ${styles.togglerIconClose}`}>
@@ -197,7 +228,18 @@ const ChatBotWidget = ({
               </li>
             );
           })}
-          {typing && (
+          {typing && streamingText && (
+            // Streaming reply in progress: show the accumulated text with a
+            // blinking cursor instead of the "typing..." placeholder.
+            <li className={`${styles.chat} ${styles.incoming}`}>
+              <span className={styles.avatar}>{botIcon}</span>
+              <p className={styles.bubble} style={botFontStyle}>
+                {streamingText}
+                <span className={styles.streamCursor} aria-hidden="true"></span>
+              </p>
+            </li>
+          )}
+          {typing && !streamingText && (
             <li className={`${styles.chat} ${styles.incoming}`}>
               <span className={styles.avatar}>{botIcon}</span>
               <p

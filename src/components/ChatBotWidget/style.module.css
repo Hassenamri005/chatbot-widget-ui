@@ -99,6 +99,10 @@
     }
 }
 
+.togglerHidden {
+    display: none;
+}
+
 .chatbot {
     position: fixed;
     right: 24px;
@@ -341,6 +345,25 @@
 
 .typingDots i:nth-child(3) {
     animation-delay: 0.3s;
+}
+
+.streamCursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    background: currentColor;
+    vertical-align: text-bottom;
+    animation: cbwBlink 0.9s steps(1) infinite;
+}
+
+@keyframes cbwBlink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
 }
 
 .chatInput {

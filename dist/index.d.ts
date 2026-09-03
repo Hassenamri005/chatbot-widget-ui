@@ -5,7 +5,8 @@ interface Message {
     content: string;
 }
 interface ChatWidgetIOProps {
-    callApi: (message: string) => Promise<string>;
+    callApi?: (message: string) => Promise<string>;
+    streamApi?: (message: string, onChunk: (textSoFar: string) => void) => Promise<string>;
     chatbotName?: string;
     isTypingMessage?: string;
     IncommingErrMsg?: string;
@@ -20,6 +21,6 @@ interface ChatWidgetIOProps {
     messages?: Message[];
     useInnerHTML?: boolean;
 }
-declare const ChatBotWidget: ({ callApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, useInnerHTML, }: ChatWidgetIOProps) => React.JSX.Element;
+declare const ChatBotWidget: ({ callApi, streamApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, useInnerHTML, }: ChatWidgetIOProps) => React.JSX.Element;
 
 export { ChatBotWidget };

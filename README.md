@@ -152,11 +152,49 @@ const App = () => {
 export default App;
 ```
 
+### Streaming responses
+
+For an API that streams its reply (e.g. Server-Sent Events), pass `streamApi` instead of (or alongside) `callApi`. Call `onChunk` with the accumulated text so far each time a piece arrives; the widget re-renders the bubble live as you do. Resolve the promise with the final full text once the stream ends — that's what gets passed to `handleNewMessage`/`onBotResponse`, same as `callApi`.
+
+```javascript
+const streamApiCall = async (
+  message: string,
+  onChunk: (textSoFar: string) => void
+): Promise<string> => {
+  const response = await fetch("https://example.com/api/stream", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
+  });
+
+  const reader = response.body!.getReader();
+  const decoder = new TextDecoder();
+  let fullText = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    fullText += decoder.decode(value, { stream: true });
+    onChunk(fullText);
+  }
+
+  return fullText;
+};
+
+<ChatBotWidget
+  streamApi={streamApiCall}
+  onBotResponse={handleBotResponse}
+  handleNewMessage={handleNewMessage}
+  messages={messages}
+/>
+```
+
 ## Chatbot Component Props
 
 | Prop Name             | Type     | Default Value                                     | Description                                                                         |
 | --------------------- | -------- | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `callApi`             | function | N/A                                               | Sends an API request to retrieve text completion.                                   |
+| `callApi`             | function | N/A                                               | Sends an API request and resolves with the full text completion. Either `callApi` or `streamApi` is required; `streamApi` takes priority when both are given. |
+| `streamApi`           | function | N/A                                               | Streaming variant of `callApi`: `(message, onChunk) => Promise<string>`. Call `onChunk(textSoFar)` with the accumulated text as it streams in — the chat bubble updates live, cursor and all — then resolve with the final full text once the stream ends. See [Streaming responses](#streaming-responses). |
 | `chatbotName`         | string   | `"Chatbot"`                                       | The name/title of the chatbot displayed in the header.                              |
 | `isTypingMessage`     | string   | `"Typing..."`                                     | The message displayed when the chatbot is typing a response.                        |
 | `IncommingErrMsg`     | string   | `"Oops! Something went wrong. Please try again."` | The error message displayed when an API request fails.                              |
