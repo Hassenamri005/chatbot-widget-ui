@@ -59,9 +59,188 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = "@import url(\"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap\");\n\n@keyframes style-module_cbwPopIn__hXwvF {\n    from {\n        opacity: 0;\n        transform: translateY(12px) scale(0.98);\n    }\n\n    to {\n        opacity: 1;\n        transform: translateY(0) scale(1);\n    }\n}\n\n@keyframes style-module_cbwBounce__g8i7y {\n\n    0%,\n    60%,\n    100% {\n        transform: translateY(0);\n        opacity: 0.4;\n    }\n\n    30% {\n        transform: translateY(-3px);\n        opacity: 1;\n    }\n}\n\n.style-module_chatbotToggler__UG1t1 {\n    position: fixed;\n    bottom: 24px;\n    right: 24px;\n    z-index: 1000;\n    outline: none;\n    border: none;\n    height: 60px;\n    width: 60px;\n    display: flex;\n    cursor: pointer;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: #fff;\n    background: var(--cbw-primary, #eb4034);\n    transition: transform 0.25s ease, box-shadow 0.25s ease;\n    box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.35);\n    box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--cbw-primary, #eb4034) 55%, transparent);\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbotToggler__UG1t1:hover {\n    transform: translateY(-2px) scale(1.04);\n}\n\n.style-module_chatbotToggler__UG1t1:active {\n    transform: translateY(0) scale(0.96);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n    transform: rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz:hover {\n    transform: rotate(90deg) translateY(-2px) scale(1.04);\n}\n\n.style-module_togglerIcon__dWA6z {\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n}\n\n.style-module_togglerIconClose__H1lw4 {\n    opacity: 0;\n    transform: scale(0.5) rotate(-90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIcon__dWA6z:not(.style-module_togglerIconClose__H1lw4) {\n    opacity: 0;\n    transform: scale(0.5) rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIconClose__H1lw4 {\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n}\n\n@media (max-width: 575px) {\n    .style-module_chatbotToggler__UG1t1 {\n        bottom: 16px;\n        right: 16px;\n        height: 52px;\n        width: 52px;\n    }\n}\n\n.style-module_togglerHidden__p0mzJ {\n    display: none;\n}\n\n.style-module_chatbot__vxZf3 {\n    position: fixed;\n    right: 24px;\n    bottom: 96px;\n    z-index: 999;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    width: 380px;\n    max-width: calc(100vw - 32px);\n    height: 600px;\n    max-height: calc(100vh - 120px);\n    opacity: 0;\n    pointer-events: none;\n    background: #fff;\n    transform: translateY(16px) scale(0.96);\n    transform-origin: bottom right;\n    border-radius: 20px;\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.22), 0 8px 24px -8px rgba(15, 23, 42, 0.12);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbot__vxZf3.style-module_open__wk2iz {\n    opacity: 1;\n    pointer-events: auto;\n    transform: translateY(0) scale(1);\n    animation: style-module_cbwPopIn__hXwvF 0.22s ease;\n}\n\n.style-module_chatbot__vxZf3.style-module_maximized__Iz0vk {\n    width: 100vw;\n    height: 100vh;\n    max-width: 100vw;\n    max-height: 100vh;\n    right: 0;\n    bottom: 0;\n    border-radius: 0;\n    transition: opacity 0.2s ease, transform 0.2s ease, width 0.25s ease,\n        height 0.25s ease, max-width 0.25s ease, max-height 0.25s ease,\n        right 0.25s ease, bottom 0.25s ease, border-radius 0.25s ease;\n}\n\n/* ChatBot header */\n.style-module_chatbot__vxZf3 header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    flex: none;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    padding: 16px 16px 16px 18px;\n}\n\n.style-module_headerInfo__ANTjR {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    min-width: 0;\n}\n\n.style-module_headerAvatar__Zvyi8 {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.18);\n    color: #fff;\n}\n\n.style-module_chatbot__vxZf3 header h2 {\n    margin: 0;\n    color: #fff;\n    font-size: 1.05em;\n    font-weight: 600;\n    letter-spacing: 0.2px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.style-module_headerActions__pPu-F {\n    display: flex;\n    align-items: center;\n    gap: 2px;\n    flex: none;\n}\n\n.style-module_closeBtn__gzNIo,\n.style-module_maximizeBtn__VT0xf {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: transparent;\n    color: #fff;\n    cursor: pointer;\n    opacity: 0.85;\n    transition: background 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_closeBtn__gzNIo:hover,\n.style-module_maximizeBtn__VT0xf:hover {\n    opacity: 1;\n    background: rgba(255, 255, 255, 0.16);\n}\n\n.style-module_chatbox__8B0hv {\n    flex: 1 1 auto;\n    overflow-y: auto;\n    scrollbar-width: thin;\n    scrollbar-color: #cbd5e1 transparent;\n    margin: 0;\n    padding: 16px 14px;\n    display: flex;\n    flex-direction: column;\n    background: #fafafa;\n}\n\n.style-module_chat__NBxBu {\n    display: flex;\n    align-items: flex-end;\n    list-style: none;\n    margin-top: 14px;\n    max-width: 100%;\n}\n\n.style-module_chat__NBxBu.style-module_grouped__LDa-Y {\n    margin-top: 4px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar {\n    width: 6px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-track,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb {\n    background: #cbd5e1;\n    border-radius: 25px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb:hover,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb:hover {\n    background: #94a3b8;\n}\n\n.style-module_avatar__U-ufJ {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    height: 28px;\n    width: 28px;\n    color: var(--cbw-primary, #eb4034);\n    background: color-mix(in srgb, var(--cbw-primary, #eb4034) 14%, #fff);\n    border-radius: 50%;\n    margin: 0 8px 0 0;\n}\n\n.style-module_incoming__7r3wQ.style-module_grouped__LDa-Y .style-module_avatar__U-ufJ {\n    visibility: hidden;\n}\n\n.style-module_outgoing__eI-Kd {\n    justify-content: flex-end;\n}\n\n.style-module_bubble__gohsH {\n    margin: 0;\n    color: #fff;\n    font-size: 0.9em;\n    max-width: 78%;\n    padding: 9px 13px;\n    border-radius: 16px 16px 16px 4px;\n    background: var(--cbw-primary, #eb4034);\n    line-height: 1.4;\n    word-break: break-word;\n    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);\n}\n\n.style-module_incoming__7r3wQ .style-module_bubble__gohsH {\n    color: #1f2430;\n    background: #f0f1f5;\n    border-radius: 16px 16px 16px 4px;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH {\n    background: var(--cbw-primary, #eb4034);\n    border-radius: 16px 16px 4px 16px;\n}\n\n.style-module_errorBubble__PaJbs {\n    color: #b3261e;\n    background: #fdecea !important;\n    border: 1px solid #f6c6c2;\n}\n\n.style-module_typingBubble__Dpd3r {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: #64748b;\n    font-style: italic;\n}\n\n.style-module_typingDots__sv6N6 {\n    display: inline-flex;\n    align-items: center;\n    gap: 3px;\n}\n\n.style-module_typingDots__sv6N6 i {\n    display: block;\n    width: 4px;\n    height: 4px;\n    border-radius: 50%;\n    background: currentColor;\n    animation: style-module_cbwBounce__g8i7y 1s infinite ease-in-out;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(2) {\n    animation-delay: 0.15s;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(3) {\n    animation-delay: 0.3s;\n}\n\n.style-module_streamCursor__T2Sy1 {\n    display: inline-block;\n    width: 2px;\n    height: 1em;\n    margin-left: 2px;\n    background: currentColor;\n    vertical-align: text-bottom;\n    animation: style-module_cbwBlink__rM3oS 0.9s steps(1) infinite;\n}\n\n@keyframes style-module_cbwBlink__rM3oS {\n    0%, 49% {\n        opacity: 1;\n    }\n    50%, 100% {\n        opacity: 0;\n    }\n}\n\n.style-module_chatInput__ap6uI {\n    flex: none;\n    display: flex;\n    align-items: flex-end;\n    gap: 8px;\n    background: #fff;\n    padding: 10px 12px;\n    border-top: 1px solid rgba(15, 23, 42, 0.08);\n}\n\n.style-module_chatInput__ap6uI textarea {\n    height: 40px;\n    max-height: 100px;\n    flex: 1 1 auto;\n    border: 1px solid rgba(15, 23, 42, 0.1);\n    outline: none;\n    font-family: inherit;\n    font-size: 0.9em;\n    resize: none;\n    padding: 10px 14px;\n    border-radius: 20px;\n    background: #f5f6f8;\n    overflow-y: auto;\n    transition: border-color 0.15s ease, background 0.15s ease;\n}\n\n.style-module_chatInput__ap6uI textarea:focus {\n    background: #fff;\n    border-color: var(--cbw-primary, #eb4034);\n}\n\n.style-module_sendBtn__CgRBw {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 40px;\n    height: 40px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    cursor: pointer;\n    transition: transform 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_sendBtn__CgRBw:hover:not(:disabled) {\n    transform: scale(1.06);\n}\n\n.style-module_sendBtn__CgRBw:active:not(:disabled) {\n    transform: scale(0.94);\n}\n\n.style-module_sendBtn__CgRBw:disabled {\n    opacity: 0.4;\n    cursor: not-allowed;\n}\n\n@media (max-width: 767px) {\n    .style-module_chatbot__vxZf3 {\n        width: 100%;\n        max-width: 100%;\n        height: 100%;\n        max-height: 100%;\n        border-radius: 0;\n        border: none;\n        bottom: 0;\n        right: 0;\n    }\n\n    .style-module_chatbot__vxZf3 header {\n        border-radius: 0;\n    }\n\n    .style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n        display: none;\n    }\n\n    .style-module_maximizeBtn__VT0xf {\n        display: none;\n    }\n}\n";
+var css_248z = "@import url(\"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap\");\n\n@keyframes style-module_cbwPopIn__hXwvF {\n    from {\n        opacity: 0;\n        transform: translateY(12px) scale(0.98);\n    }\n\n    to {\n        opacity: 1;\n        transform: translateY(0) scale(1);\n    }\n}\n\n@keyframes style-module_cbwBounce__g8i7y {\n\n    0%,\n    60%,\n    100% {\n        transform: translateY(0);\n        opacity: 0.4;\n    }\n\n    30% {\n        transform: translateY(-3px);\n        opacity: 1;\n    }\n}\n\n.style-module_chatbotToggler__UG1t1 {\n    position: fixed;\n    bottom: 24px;\n    right: 24px;\n    z-index: 1000;\n    outline: none;\n    border: none;\n    height: 60px;\n    width: 60px;\n    display: flex;\n    cursor: pointer;\n    align-items: center;\n    justify-content: center;\n    border-radius: 50%;\n    color: #fff;\n    background: var(--cbw-primary, #eb4034);\n    transition: transform 0.25s ease, box-shadow 0.25s ease;\n    box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.35);\n    box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--cbw-primary, #eb4034) 55%, transparent);\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbotToggler__UG1t1:hover {\n    transform: translateY(-2px) scale(1.04);\n}\n\n.style-module_chatbotToggler__UG1t1:active {\n    transform: translateY(0) scale(0.96);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n    transform: rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz:hover {\n    transform: rotate(90deg) translateY(-2px) scale(1.04);\n}\n\n.style-module_togglerIcon__dWA6z {\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n}\n\n.style-module_togglerIconClose__H1lw4 {\n    opacity: 0;\n    transform: scale(0.5) rotate(-90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIcon__dWA6z:not(.style-module_togglerIconClose__H1lw4) {\n    opacity: 0;\n    transform: scale(0.5) rotate(90deg);\n}\n\n.style-module_chatbotToggler__UG1t1.style-module_open__wk2iz .style-module_togglerIconClose__H1lw4 {\n    opacity: 1;\n    transform: scale(1) rotate(0deg);\n}\n\n@media (max-width: 575px) {\n    .style-module_chatbotToggler__UG1t1 {\n        bottom: 16px;\n        right: 16px;\n        height: 52px;\n        width: 52px;\n    }\n}\n\n.style-module_togglerHidden__p0mzJ {\n    display: none;\n}\n\n.style-module_chatbot__vxZf3 {\n    position: fixed;\n    right: 24px;\n    bottom: 96px;\n    z-index: 999;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    width: 380px;\n    max-width: calc(100vw - 32px);\n    height: 600px;\n    max-height: calc(100vh - 120px);\n    opacity: 0;\n    pointer-events: none;\n    background: #fff;\n    transform: translateY(16px) scale(0.96);\n    transform-origin: bottom right;\n    border-radius: 20px;\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.22), 0 8px 24px -8px rgba(15, 23, 42, 0.12);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n    font-family: \"Poppins\", sans-serif;\n}\n\n.style-module_chatbot__vxZf3.style-module_open__wk2iz {\n    opacity: 1;\n    pointer-events: auto;\n    transform: translateY(0) scale(1);\n    animation: style-module_cbwPopIn__hXwvF 0.22s ease;\n}\n\n.style-module_chatbot__vxZf3.style-module_maximized__Iz0vk {\n    width: 100vw;\n    height: 100vh;\n    max-width: 100vw;\n    max-height: 100vh;\n    right: 0;\n    bottom: 0;\n    border-radius: 0;\n    transition: opacity 0.2s ease, transform 0.2s ease, width 0.25s ease,\n        height 0.25s ease, max-width 0.25s ease, max-height 0.25s ease,\n        right 0.25s ease, bottom 0.25s ease, border-radius 0.25s ease;\n}\n\n/* ChatBot header */\n.style-module_chatbot__vxZf3 header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    flex: none;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    padding: 16px 16px 16px 18px;\n}\n\n.style-module_headerInfo__ANTjR {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    min-width: 0;\n}\n\n.style-module_headerAvatar__Zvyi8 {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    background: rgba(255, 255, 255, 0.18);\n    color: #fff;\n}\n\n.style-module_chatbot__vxZf3 header h2 {\n    margin: 0;\n    color: #fff;\n    font-size: 1.05em;\n    font-weight: 600;\n    letter-spacing: 0.2px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.style-module_headerActions__pPu-F {\n    display: flex;\n    align-items: center;\n    gap: 2px;\n    flex: none;\n}\n\n.style-module_closeBtn__gzNIo,\n.style-module_maximizeBtn__VT0xf {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: transparent;\n    color: #fff;\n    cursor: pointer;\n    opacity: 0.85;\n    transition: background 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_closeBtn__gzNIo:hover,\n.style-module_maximizeBtn__VT0xf:hover {\n    opacity: 1;\n    background: rgba(255, 255, 255, 0.16);\n}\n\n.style-module_chatbox__8B0hv {\n    flex: 1 1 auto;\n    overflow-y: auto;\n    scrollbar-width: thin;\n    scrollbar-color: #cbd5e1 transparent;\n    margin: 0;\n    padding: 16px 14px;\n    display: flex;\n    flex-direction: column;\n    background: #fafafa;\n}\n\n.style-module_chat__NBxBu {\n    display: flex;\n    align-items: flex-end;\n    list-style: none;\n    margin-top: 14px;\n    max-width: 100%;\n}\n\n.style-module_chat__NBxBu.style-module_grouped__LDa-Y {\n    margin-top: 4px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar {\n    width: 6px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-track,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb {\n    background: #cbd5e1;\n    border-radius: 25px;\n}\n\n.style-module_chatbox__8B0hv::-webkit-scrollbar-thumb:hover,\n.style-module_chatInput__ap6uI textarea::-webkit-scrollbar-thumb:hover {\n    background: #94a3b8;\n}\n\n.style-module_avatar__U-ufJ {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    height: 28px;\n    width: 28px;\n    color: var(--cbw-primary, #eb4034);\n    background: color-mix(in srgb, var(--cbw-primary, #eb4034) 14%, #fff);\n    border-radius: 50%;\n    margin: 0 8px 0 0;\n}\n\n.style-module_incoming__7r3wQ.style-module_grouped__LDa-Y .style-module_avatar__U-ufJ {\n    visibility: hidden;\n}\n\n.style-module_outgoing__eI-Kd {\n    justify-content: flex-end;\n}\n\n.style-module_bubble__gohsH {\n    margin: 0;\n    color: #fff;\n    font-size: 0.9em;\n    max-width: 78%;\n    padding: 9px 13px;\n    border-radius: 16px 16px 16px 4px;\n    background: var(--cbw-primary, #eb4034);\n    line-height: 1.4;\n    word-break: break-word;\n    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);\n}\n\n.style-module_incoming__7r3wQ .style-module_bubble__gohsH {\n    color: #1f2430;\n    background: #f0f1f5;\n    border-radius: 16px 16px 16px 4px;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH {\n    background: var(--cbw-primary, #eb4034);\n    border-radius: 16px 16px 4px 16px;\n}\n\n.style-module_errorBubble__PaJbs {\n    color: #b3261e;\n    background: #fdecea !important;\n    border: 1px solid #f6c6c2;\n}\n\n/* Markdown content rendered inside a bubble. Plain tag selectors so this\n   covers both the widget's built-in Markdown rendering and HTML a consumer\n   passes in via `useInnerHTML` (e.g. the demo app's own markdown.ts). */\n\n.style-module_bubble__gohsH > :first-child {\n    margin-top: 0;\n}\n\n.style-module_bubble__gohsH > :last-child {\n    margin-bottom: 0;\n}\n\n.style-module_bubble__gohsH p,\n.style-module_bubble__gohsH ul,\n.style-module_bubble__gohsH ol,\n.style-module_bubble__gohsH table,\n.style-module_bubble__gohsH pre,\n.style-module_bubble__gohsH blockquote,\n.style-module_bubble__gohsH h1,\n.style-module_bubble__gohsH h2,\n.style-module_bubble__gohsH h3,\n.style-module_bubble__gohsH h4,\n.style-module_bubble__gohsH h5,\n.style-module_bubble__gohsH h6 {\n    margin: 8px 0;\n}\n\n.style-module_bubble__gohsH h1,\n.style-module_bubble__gohsH h2,\n.style-module_bubble__gohsH h3,\n.style-module_bubble__gohsH h4,\n.style-module_bubble__gohsH h5,\n.style-module_bubble__gohsH h6 {\n    line-height: 1.3;\n    font-weight: 600;\n}\n\n.style-module_bubble__gohsH h1 {\n    font-size: 1.25em;\n}\n\n.style-module_bubble__gohsH h2 {\n    font-size: 1.15em;\n}\n\n.style-module_bubble__gohsH h3 {\n    font-size: 1.05em;\n}\n\n.style-module_bubble__gohsH h4,\n.style-module_bubble__gohsH h5,\n.style-module_bubble__gohsH h6 {\n    font-size: 1em;\n}\n\n.style-module_bubble__gohsH ul,\n.style-module_bubble__gohsH ol {\n    padding-left: 1.2em;\n}\n\n.style-module_bubble__gohsH li + li {\n    margin-top: 2px;\n}\n\n.style-module_bubble__gohsH blockquote {\n    padding-left: 10px;\n    border-left: 3px solid currentColor;\n    opacity: 0.85;\n}\n\n.style-module_bubble__gohsH hr {\n    border: none;\n    border-top: 1px solid currentColor;\n    opacity: 0.25;\n    margin: 4px 0;\n}\n\n.style-module_bubble__gohsH code {\n    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;\n    font-size: 0.9em;\n    padding: 1px 5px;\n    border-radius: 4px;\n    background: rgba(0, 0, 0, 0.08);\n}\n\n.style-module_bubble__gohsH pre {\n    padding: 8px 10px;\n    border-radius: 8px;\n    background: rgba(0, 0, 0, 0.08);\n    overflow-x: auto;\n}\n\n.style-module_bubble__gohsH pre code {\n    font-size: 0.85em;\n    background: none;\n    padding: 0;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH code,\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH pre {\n    background: rgba(255, 255, 255, 0.18);\n}\n\n.style-module_bubble__gohsH table {\n    display: block;\n    overflow-x: auto;\n    border-collapse: collapse;\n    font-size: 0.95em;\n}\n\n.style-module_bubble__gohsH th,\n.style-module_bubble__gohsH td {\n    border: 1px solid rgba(0, 0, 0, 0.12);\n    padding: 4px 8px;\n    text-align: left;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH th,\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH td {\n    border-color: rgba(255, 255, 255, 0.3);\n}\n\n.style-module_bubble__gohsH th {\n    background: rgba(0, 0, 0, 0.05);\n    font-weight: 600;\n}\n\n.style-module_outgoing__eI-Kd .style-module_bubble__gohsH th {\n    background: rgba(255, 255, 255, 0.12);\n}\n\n.style-module_bubble__gohsH a {\n    color: inherit;\n    text-decoration: underline;\n}\n\n.style-module_typingBubble__Dpd3r {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: #64748b;\n    font-style: italic;\n}\n\n.style-module_typingDots__sv6N6 {\n    display: inline-flex;\n    align-items: center;\n    gap: 3px;\n}\n\n.style-module_typingDots__sv6N6 i {\n    display: block;\n    width: 4px;\n    height: 4px;\n    border-radius: 50%;\n    background: currentColor;\n    animation: style-module_cbwBounce__g8i7y 1s infinite ease-in-out;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(2) {\n    animation-delay: 0.15s;\n}\n\n.style-module_typingDots__sv6N6 i:nth-child(3) {\n    animation-delay: 0.3s;\n}\n\n.style-module_streamCursor__T2Sy1 {\n    display: inline-block;\n    width: 2px;\n    height: 1em;\n    margin-left: 2px;\n    background: currentColor;\n    vertical-align: text-bottom;\n    animation: style-module_cbwBlink__rM3oS 0.9s steps(1) infinite;\n}\n\n@keyframes style-module_cbwBlink__rM3oS {\n    0%, 49% {\n        opacity: 1;\n    }\n    50%, 100% {\n        opacity: 0;\n    }\n}\n\n.style-module_chatInput__ap6uI {\n    flex: none;\n    display: flex;\n    align-items: flex-end;\n    gap: 8px;\n    background: #fff;\n    padding: 10px 12px;\n    border-top: 1px solid rgba(15, 23, 42, 0.08);\n}\n\n.style-module_chatInput__ap6uI textarea {\n    height: 40px;\n    max-height: 100px;\n    flex: 1 1 auto;\n    border: 1px solid rgba(15, 23, 42, 0.1);\n    outline: none;\n    font-family: inherit;\n    font-size: 0.9em;\n    resize: none;\n    padding: 10px 14px;\n    border-radius: 20px;\n    background: #f5f6f8;\n    overflow-y: auto;\n    transition: border-color 0.15s ease, background 0.15s ease;\n}\n\n.style-module_chatInput__ap6uI textarea:focus {\n    background: #fff;\n    border-color: var(--cbw-primary, #eb4034);\n}\n\n.style-module_sendBtn__CgRBw {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex: none;\n    width: 40px;\n    height: 40px;\n    padding: 0;\n    border: none;\n    border-radius: 50%;\n    background: var(--cbw-primary, #eb4034);\n    color: #fff;\n    cursor: pointer;\n    transition: transform 0.15s ease, opacity 0.15s ease;\n}\n\n.style-module_sendBtn__CgRBw:hover:not(:disabled) {\n    transform: scale(1.06);\n}\n\n.style-module_sendBtn__CgRBw:active:not(:disabled) {\n    transform: scale(0.94);\n}\n\n.style-module_sendBtn__CgRBw:disabled {\n    opacity: 0.4;\n    cursor: not-allowed;\n}\n\n@media (max-width: 767px) {\n    .style-module_chatbot__vxZf3 {\n        width: 100%;\n        max-width: 100%;\n        height: 100%;\n        max-height: 100%;\n        border-radius: 0;\n        border: none;\n        bottom: 0;\n        right: 0;\n    }\n\n    .style-module_chatbot__vxZf3 header {\n        border-radius: 0;\n    }\n\n    .style-module_chatbotToggler__UG1t1.style-module_open__wk2iz {\n        display: none;\n    }\n\n    .style-module_maximizeBtn__VT0xf {\n        display: none;\n    }\n}\n";
 var styles = {"chatbotToggler":"style-module_chatbotToggler__UG1t1","open":"style-module_open__wk2iz","togglerIcon":"style-module_togglerIcon__dWA6z","togglerIconClose":"style-module_togglerIconClose__H1lw4","togglerHidden":"style-module_togglerHidden__p0mzJ","chatbot":"style-module_chatbot__vxZf3","maximized":"style-module_maximized__Iz0vk","headerInfo":"style-module_headerInfo__ANTjR","headerAvatar":"style-module_headerAvatar__Zvyi8","headerActions":"style-module_headerActions__pPu-F","closeBtn":"style-module_closeBtn__gzNIo","maximizeBtn":"style-module_maximizeBtn__VT0xf","chatbox":"style-module_chatbox__8B0hv","chat":"style-module_chat__NBxBu","grouped":"style-module_grouped__LDa-Y","chatInput":"style-module_chatInput__ap6uI","avatar":"style-module_avatar__U-ufJ","incoming":"style-module_incoming__7r3wQ","outgoing":"style-module_outgoing__eI-Kd","bubble":"style-module_bubble__gohsH","errorBubble":"style-module_errorBubble__PaJbs","typingBubble":"style-module_typingBubble__Dpd3r","typingDots":"style-module_typingDots__sv6N6","streamCursor":"style-module_streamCursor__T2Sy1","sendBtn":"style-module_sendBtn__CgRBw"};
 styleInject(css_248z);
+
+/**
+ * Small, dependency-free Markdown renderer for chat bubbles.
+ *
+ * Bot APIs commonly reply with Markdown (headings, tables, lists, code
+ * blocks, bold/italic, links). This covers the subset that shows up in
+ * everyday chat responses without pulling in a full CommonMark parser.
+ * Output is plain semantic tags (h1-h6, table, ul/ol, pre/code, blockquote,
+ * hr, p) so they can be styled the same way whether they come from here or
+ * from a consumer's own Markdown-to-HTML conversion used with
+ * `useInnerHTML` (see the demo app's markdown.ts for that path).
+ */
+let keySeed = 0;
+const nextKey = () => `md-${keySeed++}`;
+// ---- Inline formatting (bold, italic, code, links) ----------------------
+const INLINE_PATTERN = /(`[^`]+`)|(\*\*[^*]+\*\*)|(__[^_]+__)|(\*[^*]+\*)|(_[^_]+_)|(\[[^\]]+\]\([^)\s]+\))/;
+function renderInline(text) {
+    const nodes = [];
+    let remaining = text;
+    while (remaining.length > 0) {
+        const match = INLINE_PATTERN.exec(remaining);
+        if (!match) {
+            nodes.push(remaining);
+            break;
+        }
+        const index = match.index;
+        if (index > 0) {
+            nodes.push(remaining.slice(0, index));
+        }
+        const token = match[0];
+        if (token.startsWith("`")) {
+            nodes.push(React.createElement("code", { key: nextKey() }, token.slice(1, -1)));
+        }
+        else if (token.startsWith("**") || token.startsWith("__")) {
+            nodes.push(React.createElement("strong", { key: nextKey() }, renderInline(token.slice(2, -2))));
+        }
+        else if (token.startsWith("[")) {
+            const linkMatch = /^\[([^\]]+)\]\(([^)\s]+)\)$/.exec(token);
+            if (linkMatch) {
+                nodes.push(React.createElement("a", { key: nextKey(), href: linkMatch[2], target: "_blank", rel: "noopener noreferrer" }, renderInline(linkMatch[1])));
+            }
+            else {
+                nodes.push(token);
+            }
+        }
+        else {
+            nodes.push(React.createElement("em", { key: nextKey() }, renderInline(token.slice(1, -1))));
+        }
+        remaining = remaining.slice(index + token.length);
+    }
+    return nodes;
+}
+// ---- Block-level parsing --------------------------------------------------
+const HEADING_RE = /^(#{1,6})\s+(.+?)\s*#*$/;
+const UL_RE = /^\s*[-*+]\s+(.+)$/;
+const OL_RE = /^\s*\d+[.)]\s+(.+)$/;
+const HR_RE = /^\s*([-*_])\s*(?:\1\s*){2,}$/;
+const TABLE_SEP_RE = /^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?$/;
+const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
+function splitTableRow(row) {
+    let trimmed = row.trim();
+    if (trimmed.startsWith("|"))
+        trimmed = trimmed.slice(1);
+    if (trimmed.endsWith("|"))
+        trimmed = trimmed.slice(0, -1);
+    // Split on unescaped pipes.
+    return trimmed.split(/(?<!\\)\|/).map((cell) => cell.trim().replace(/\\\|/g, "|"));
+}
+function isTableSeparator(line) {
+    return TABLE_SEP_RE.test(line.trim()) && line.includes("-");
+}
+function renderBlocks(lines) {
+    const blocks = [];
+    let i = 0;
+    while (i < lines.length) {
+        const line = lines[i];
+        if (line.trim() === "") {
+            i++;
+            continue;
+        }
+        // Fenced code block.
+        if (line.trim().startsWith("```")) {
+            const codeLines = [];
+            i++;
+            while (i < lines.length && !lines[i].trim().startsWith("```")) {
+                codeLines.push(lines[i]);
+                i++;
+            }
+            i++; // skip closing fence
+            blocks.push(React.createElement("pre", { key: nextKey() },
+                React.createElement("code", null, codeLines.join("\n"))));
+            continue;
+        }
+        // Table: a row followed by a separator row.
+        if (line.includes("|") &&
+            i + 1 < lines.length &&
+            isTableSeparator(lines[i + 1])) {
+            const headerCells = splitTableRow(line);
+            i += 2;
+            const rows = [];
+            while (i < lines.length && lines[i].trim() !== "" && lines[i].includes("|")) {
+                rows.push(splitTableRow(lines[i]));
+                i++;
+            }
+            blocks.push(React.createElement("table", { key: nextKey() },
+                React.createElement("thead", null,
+                    React.createElement("tr", null, headerCells.map((cell) => (React.createElement("th", { key: nextKey() }, renderInline(cell)))))),
+                React.createElement("tbody", null, rows.map((row) => (React.createElement("tr", { key: nextKey() }, row.map((cell) => (React.createElement("td", { key: nextKey() }, renderInline(cell))))))))));
+            continue;
+        }
+        // Heading.
+        const headingMatch = HEADING_RE.exec(line);
+        if (headingMatch) {
+            const level = headingMatch[1].length;
+            const Tag = HEADING_TAGS[level - 1];
+            blocks.push(React.createElement(Tag, { key: nextKey() }, renderInline(headingMatch[2])));
+            i++;
+            continue;
+        }
+        // Horizontal rule.
+        if (HR_RE.test(line)) {
+            blocks.push(React.createElement("hr", { key: nextKey() }));
+            i++;
+            continue;
+        }
+        // Blockquote.
+        if (line.trim().startsWith(">")) {
+            const quoteLines = [];
+            while (i < lines.length && lines[i].trim().startsWith(">")) {
+                quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+                i++;
+            }
+            blocks.push(React.createElement("blockquote", { key: nextKey() }, renderBlocks(quoteLines)));
+            continue;
+        }
+        // Unordered list.
+        if (UL_RE.test(line)) {
+            const items = [];
+            while (i < lines.length && UL_RE.test(lines[i])) {
+                items.push(UL_RE.exec(lines[i])[1]);
+                i++;
+            }
+            blocks.push(React.createElement("ul", { key: nextKey() }, items.map((item) => (React.createElement("li", { key: nextKey() }, renderInline(item))))));
+            continue;
+        }
+        // Ordered list.
+        if (OL_RE.test(line)) {
+            const items = [];
+            while (i < lines.length && OL_RE.test(lines[i])) {
+                items.push(OL_RE.exec(lines[i])[1]);
+                i++;
+            }
+            blocks.push(React.createElement("ol", { key: nextKey() }, items.map((item) => (React.createElement("li", { key: nextKey() }, renderInline(item))))));
+            continue;
+        }
+        // Paragraph: consume until a blank line or a line that starts a new block.
+        const paraLines = [line];
+        i++;
+        while (i < lines.length &&
+            lines[i].trim() !== "" &&
+            !HEADING_RE.test(lines[i]) &&
+            !UL_RE.test(lines[i]) &&
+            !OL_RE.test(lines[i]) &&
+            !lines[i].trim().startsWith(">") &&
+            !lines[i].trim().startsWith("```") &&
+            !(lines[i].includes("|") && i + 1 < lines.length && isTableSeparator(lines[i + 1]))) {
+            paraLines.push(lines[i]);
+            i++;
+        }
+        blocks.push(React.createElement("p", { key: nextKey() }, paraLines.map((paraLine, idx) => (React.createElement(React.Fragment, { key: nextKey() },
+            idx > 0 && React.createElement("br", null),
+            renderInline(paraLine))))));
+    }
+    return blocks;
+}
+function Markdown({ text }) {
+    const lines = text.split("\n");
+    return React.createElement(React.Fragment, null, renderBlocks(lines));
+}
 
 const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMessage = "Typing...", IncommingErrMsg = "Oops! Something went wrong. Please try again.", primaryColor = "#eb4034", inputMsgPlaceholder = "Send a Message", chatIcon = React.createElement(ChatIcon, null), botIcon = React.createElement(BotIcon, null), botFontStyle = {}, typingFontStyle = {}, handleNewMessage, onBotResponse, messages = [], useInnerHTML = false, }) => {
     const [userMessage, setUserMessage] = useState("");
@@ -165,9 +344,9 @@ const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMe
                     const grouped = !!prevMsg && (prevMsg.role === "user") === isUser;
                     return (React.createElement("li", { key: index, className: `${styles.chat} ${isUser ? styles.outgoing : styles.incoming} ${grouped ? styles.grouped : ""}` },
                         !isUser && React.createElement("span", { className: styles.avatar }, botIcon),
-                        React.createElement("p", Object.assign({ className: `${styles.bubble} ${isError ? styles.errorBubble : ""}`, style: !isUser ? botFontStyle : undefined }, (useInnerHTML
+                        React.createElement("div", Object.assign({ className: `${styles.bubble} ${isError ? styles.errorBubble : ""}`, style: !isUser ? botFontStyle : undefined }, (useInnerHTML
                             ? { dangerouslySetInnerHTML: { __html: msg.content } }
-                            : { children: msg.content })))));
+                            : { children: React.createElement(Markdown, { text: msg.content }) })))));
                 }),
                 typing && streamingText && (
                 // Streaming reply in progress: show the accumulated text with a

@@ -1,6 +1,6 @@
 {
   "name": "chatbot-widget-ui",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "React js Chatbot Widget UI library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -8,9 +8,6 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "workspaces": [
-    "test"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Hassenamri005/chatbot-widget-ui"

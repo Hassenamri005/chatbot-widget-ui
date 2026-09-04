@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from './style.module.css';
+import { Markdown } from "./Markdown";
 
 interface Message {
   role: string;
@@ -216,14 +217,14 @@ const ChatBotWidget = ({
                 } ${grouped ? styles.grouped : ""}`}
               >
                 {!isUser && <span className={styles.avatar}>{botIcon}</span>}
-                <p
+                <div
                   className={`${styles.bubble} ${
                     isError ? styles.errorBubble : ""
                   }`}
                   style={!isUser ? botFontStyle : undefined}
                   {...(useInnerHTML
                     ? { dangerouslySetInnerHTML: { __html: msg.content } }
-                    : { children: msg.content })}
+                    : { children: <Markdown text={msg.content} /> })}
                 />
               </li>
             );
