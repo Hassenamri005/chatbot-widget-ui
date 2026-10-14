@@ -2,13 +2,14 @@
   "name": "chatbot-widget-ui-test",
   "private": true,
   "version": "0.0.0",
-  "description": "Demo React app that consumes the ChatBotWidget component directly from ../src",
+  "description": "Demo React app that consumes the ChatBotWidget component from the published chatbot-widget-ui npm package",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "chatbot-widget-ui": "^4.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

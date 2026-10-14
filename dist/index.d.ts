@@ -20,7 +20,8 @@ interface ChatWidgetIOProps {
     onBotResponse?: (response: string) => void;
     messages?: Message[];
     useInnerHTML?: boolean;
+    autoOpenDelay?: number;
 }
-declare const ChatBotWidget: ({ callApi, streamApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, useInnerHTML, }: ChatWidgetIOProps) => React.JSX.Element;
+declare const ChatBotWidget: ({ callApi, streamApi, chatbotName, isTypingMessage, IncommingErrMsg, primaryColor, inputMsgPlaceholder, chatIcon, botIcon, botFontStyle, typingFontStyle, handleNewMessage, onBotResponse, messages, useInnerHTML, autoOpenDelay, }: ChatWidgetIOProps) => React.JSX.Element;
 
 export { ChatBotWidget };

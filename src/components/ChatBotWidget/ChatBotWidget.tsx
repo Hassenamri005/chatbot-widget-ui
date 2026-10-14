@@ -32,6 +32,10 @@ interface ChatWidgetIOProps {
   onBotResponse?: (response: string) => void;
   messages?: Message[];
   useInnerHTML?: boolean;
+  // Opens the chat automatically after this many milliseconds. Omit it (or
+  // pass a negative value) to disable auto-open. Skipped if the user has
+  // already opened or closed the chat themselves before the delay elapses.
+  autoOpenDelay?: number;
 }
 
 const ChatBotWidget = ({
@@ -50,6 +54,7 @@ const ChatBotWidget = ({
   onBotResponse,
   messages = [],
   useInnerHTML = false,
+  autoOpenDelay,
 }: ChatWidgetIOProps) => {
   const [userMessage, setUserMessage] = useState<string>("");
   const [typing, setTyping] = useState<boolean>(false);
@@ -58,6 +63,9 @@ const ChatBotWidget = ({
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const chatInputRef = useRef<HTMLTextAreaElement | null>(null);
   const chatboxRef = useRef<HTMLUListElement | null>(null);
+  // Set once the user opens/closes the chat, so auto-open never overrides
+  // their choice.
+  const userInteractedRef = useRef<boolean>(false);
 
   const handleChat = async () => {
     const trimmedMessage = userMessage.trim();
@@ -121,18 +129,29 @@ const ChatBotWidget = ({
     }
   };
 
-  const toggleChatbot = () =>
+  const toggleChatbot = () => {
+    userInteractedRef.current = true;
     setIsOpen((open) => {
       if (open) setIsMaximized(false); // reset so it reopens at normal size
       return !open;
     });
+  };
 
   const closeChat = () => {
+    userInteractedRef.current = true;
     setIsOpen(false);
     setIsMaximized(false);
   };
 
   const toggleMaximize = () => setIsMaximized((maximized) => !maximized);
+
+  useEffect(() => {
+    if (autoOpenDelay === undefined || autoOpenDelay < 0) return;
+    const timer = setTimeout(() => {
+      if (!userInteractedRef.current) setIsOpen(true);
+    }, autoOpenDelay);
+    return () => clearTimeout(timer);
+  }, [autoOpenDelay]);
 
   useEffect(() => {
     // Scroll to bottom of chatbox when messages change

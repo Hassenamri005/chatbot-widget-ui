@@ -242,7 +242,7 @@ function Markdown({ text }) {
     return React.createElement(React.Fragment, null, renderBlocks(lines));
 }
 
-const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMessage = "Typing...", IncommingErrMsg = "Oops! Something went wrong. Please try again.", primaryColor = "#eb4034", inputMsgPlaceholder = "Send a Message", chatIcon = React.createElement(ChatIcon, null), botIcon = React.createElement(BotIcon, null), botFontStyle = {}, typingFontStyle = {}, handleNewMessage, onBotResponse, messages = [], useInnerHTML = false, }) => {
+const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMessage = "Typing...", IncommingErrMsg = "Oops! Something went wrong. Please try again.", primaryColor = "#eb4034", inputMsgPlaceholder = "Send a Message", chatIcon = React.createElement(ChatIcon, null), botIcon = React.createElement(BotIcon, null), botFontStyle = {}, typingFontStyle = {}, handleNewMessage, onBotResponse, messages = [], useInnerHTML = false, autoOpenDelay, }) => {
     const [userMessage, setUserMessage] = useState("");
     const [typing, setTyping] = useState(false);
     const [streamingText, setStreamingText] = useState(null);
@@ -250,6 +250,9 @@ const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMe
     const [isMaximized, setIsMaximized] = useState(false);
     const chatInputRef = useRef(null);
     const chatboxRef = useRef(null);
+    // Set once the user opens/closes the chat, so auto-open never overrides
+    // their choice.
+    const userInteractedRef = useRef(false);
     const handleChat = () => __awaiter(void 0, void 0, void 0, function* () {
         const trimmedMessage = userMessage.trim();
         if (!trimmedMessage)
@@ -303,16 +306,29 @@ const ChatBotWidget = ({ callApi, streamApi, chatbotName = "Chatbot", isTypingMe
             handleChat();
         }
     };
-    const toggleChatbot = () => setIsOpen((open) => {
-        if (open)
-            setIsMaximized(false); // reset so it reopens at normal size
-        return !open;
-    });
+    const toggleChatbot = () => {
+        userInteractedRef.current = true;
+        setIsOpen((open) => {
+            if (open)
+                setIsMaximized(false); // reset so it reopens at normal size
+            return !open;
+        });
+    };
     const closeChat = () => {
+        userInteractedRef.current = true;
         setIsOpen(false);
         setIsMaximized(false);
     };
     const toggleMaximize = () => setIsMaximized((maximized) => !maximized);
+    useEffect(() => {
+        if (autoOpenDelay === undefined || autoOpenDelay < 0)
+            return;
+        const timer = setTimeout(() => {
+            if (!userInteractedRef.current)
+                setIsOpen(true);
+        }, autoOpenDelay);
+        return () => clearTimeout(timer);
+    }, [autoOpenDelay]);
     useEffect(() => {
         var _a;
         // Scroll to bottom of chatbox when messages change

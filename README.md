@@ -208,6 +208,7 @@ const streamApiCall = async (
 | `onBotResponse`       | function | N/A                                               | Processes new messages and updates the conversation state.                          |
 | `messages`            | array    | `[]`                                              | The array of messages to display in the chat.                                       |
 | `useInnerHTML`        | Booloean | false                                             | Determines whether HTML content in messages should be rendered as inner HTML.       |
+| `autoOpenDelay`       | number   | N/A (disabled)                                    | Opens the chat automatically after this delay, in milliseconds (e.g. `5000` = 5 s). `0` opens it immediately. Ignored if the user has already opened or closed the chat. |
 |  |
 
 ## Deployment
@@ -219,7 +220,7 @@ nvm use 16
 
 npm run rollup-build-lib
 
-npm login
+npm login # npm login --auth-type=web
 
 npm publish --access public
 ```
